@@ -1,8 +1,10 @@
 ﻿using Pokemon2022.Game.Entities;
 using Pokemon2022.Game.Entities.Enums;
 using Pokemon2022.Game.Factory;
+using Pokemon2022.Game.Logic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +33,14 @@ namespace Pokemon2022.BattleUI
         public TeamBuilderWindow()
         {
             CurrentParty = null;
-            Parties = new();
+            if (File.Exists("teambuilder.xml"))
+            {
+                Parties = Load();
+            }
+            else
+            {
+                Parties = new();
+            }
             Natures = new() {
                 PokemonNature.None, PokemonNature.Hardy, PokemonNature.Lonely,
                 PokemonNature.Brave, PokemonNature.Adamant, PokemonNature.Naughty,
@@ -47,6 +56,63 @@ namespace Pokemon2022.BattleUI
             CurrentPartyIndex = 0;
             InitializeComponent();
             Init();
+        }
+        private List<PokemonParty> Load()
+        {
+            List<PokemonParty> parties = new();
+            PokemonParty newParty = new();
+            Pokemon currentPokemon = new();
+            foreach (string line in File.ReadAllLines("teambuilder.xml"))
+            {
+                if (line.Contains("<Party>"))
+                {
+                    newParty = new();
+                }
+                if (line.Contains("<Pokemon>"))
+                {
+                    currentPokemon = new();
+                }
+                if (line.Contains("<Name>"))
+                {
+                    var name = line.Split(new[] { "<Name>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+                    currentPokemon = GameController.NewPokemon(name, 0);
+                }
+                if (line.Contains("<Ability>"))
+                {
+                    var ability = line.Split(new[] { "<Ability>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+                    currentPokemon.Ability = GameController.GetAbility(ability);
+                }
+                if (line.Contains("<Item>"))
+                {
+                    var item = line.Split(new[] { "<Item>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+                    currentPokemon.HeldItem = GameController.GetItem(item);
+                }
+                if (line.Contains("<Level>"))
+                {
+                    var level = line.Split(new[] { "<Level>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+                    currentPokemon.Level = Convert.ToInt32(level);
+                }
+                if (line.Contains("<Nature>"))
+                {
+                    var nature = line.Split(new[] { "<Nature>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+                    currentPokemon.Nature = (PokemonNature)Enum.Parse(typeof(PokemonNature), nature);
+                }
+                if (line.Contains("<Move>"))
+                {
+                    var move = line.Split(new[] { "<Move>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+                    currentPokemon.Moves.Add(GameController.GetMove(move));
+                }
+
+                if (line.Contains("</Pokemon>"))
+                {
+                    newParty.Pokemons.Add(currentPokemon);
+                }
+                if (line.Contains("</Party>"))
+                {
+                    parties.Add(newParty);
+                }
+            }
+            return parties;
         }
         private void Init()
         {
@@ -324,7 +390,44 @@ namespace Pokemon2022.BattleUI
 
         private void Save(object sender, RoutedEventArgs e)
         {
-
+            var a = "teambuilder.xml";
+            File.WriteAllText(a, "<Document>\n");
+            foreach (PokemonParty party in Parties)
+            {
+                File.AppendAllText(a, "\t<Party>\n");
+                foreach (Pokemon p in party.Pokemons)
+                {
+                    File.AppendAllText(a, "\t\t<Pokemon>\n");
+                    File.AppendAllText(a, $"\t\t\t<Name>{p.Name}</Name>\n");
+                    File.AppendAllText(a, $"\t\t\t<Ability>{p.Ability}</Ability>\n");
+                    File.AppendAllText(a, $"\t\t\t<Item>{p.HeldItem}</Item>\n");
+                    File.AppendAllText(a, $"\t\t\t<Level>{p.Level}</Level>\n");
+                    File.AppendAllText(a, "\t\t\t<EVs>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<HP>{p.EVs.HP}</HP>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<Attack>{p.EVs.Attack}</Attack>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<Defense>{p.EVs.Defense}</Defense>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<SpecialAttack>{p.EVs.SpecialAttack}</SpecialAttack>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<SpecialDefense>{p.EVs.SpecialDefense}</SpecialDefense>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<Speed>{p.EVs.Speed}</Speed>\n");
+                    File.AppendAllText(a, "\t\t\t</EVs>\n");
+                    File.AppendAllText(a, "\t\t\t<IVs>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<HP>{p.IVs.HP}</HP>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<Attack>{p.IVs.Attack}</Attack>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<Defense>{p.IVs.Defense}</Defense>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<SpecialAttack>{p.IVs.SpecialAttack}</SpecialAttack>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<SpecialDefense>{p.IVs.SpecialDefense}</SpecialDefense>\n");
+                    File.AppendAllText(a, $"\t\t\t\t<Speed>{p.IVs.Speed}</Speed>\n");
+                    File.AppendAllText(a, "\t\t\t</IVs>\n");
+                    File.AppendAllText(a, $"\t\t\t<Nature>{p.Nature}</Nature>\n");
+                    foreach (Move m in p.Moves)
+                    {
+                        File.AppendAllText(a, $"\t\t\t<Move>{m.Name}</Move>");
+                    }
+                    File.AppendAllText(a, "\t\t</Pokemon>\n");
+                }
+                File.AppendAllText(a, "\t</Party>\n");
+            }
+            File.AppendAllText(a, "</Document>\n");
         }
 
         private void SelectOtherSpecies(object sender, SelectionChangedEventArgs e)
