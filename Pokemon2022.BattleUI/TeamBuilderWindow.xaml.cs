@@ -313,12 +313,13 @@ namespace Pokemon2022.BattleUI
             CurrentPokemon.IVs.SpecialAttack = Convert.ToInt32(SelectedIVSpAtk.Text);
             CurrentPokemon.IVs.SpecialDefense = Convert.ToInt32(SelectedIVSpDef.Text);
             CurrentPokemon.IVs.Speed = Convert.ToInt32(SelectedIVSpeed.Text);
-            CurrentParty.Pokemons[CurrentPartyIndex] = CurrentPokemon.Clone();
             if (SelectedNature.SelectedItem is PokemonNature nature) CurrentPokemon.Nature = nature;
-            if (SelectedMove1.SelectedItem is Move move1) CurrentPokemon.Moves[0] = move1;
-            if (SelectedMove2.SelectedItem is Move move2) CurrentPokemon.Moves[1] = move2;
-            if (SelectedMove3.SelectedItem is Move move3) CurrentPokemon.Moves[2] = move3;
-            if (SelectedMove4.SelectedItem is Move move4) CurrentPokemon.Moves[3] = move4;
+            if (SelectedMove1.SelectedItem is Move move1) { try { CurrentPokemon.Moves[0] = move1; } catch { CurrentPokemon.Moves.Add(move1); } }
+            if (SelectedMove2.SelectedItem is Move move2) { try { CurrentPokemon.Moves[1] = move2; } catch { CurrentPokemon.Moves.Add(move2); } }
+            if (SelectedMove3.SelectedItem is Move move3) { try { CurrentPokemon.Moves[2] = move3; } catch { CurrentPokemon.Moves.Add(move3); } }
+            if (SelectedMove4.SelectedItem is Move move4) { try { CurrentPokemon.Moves[3] = move4; } catch { CurrentPokemon.Moves.Add(move4); } }
+            CurrentParty.Pokemons[CurrentPartyIndex] = CurrentPokemon.Clone();
+            InitializeTeam();
         }
 
         private void Save(object sender, RoutedEventArgs e)
