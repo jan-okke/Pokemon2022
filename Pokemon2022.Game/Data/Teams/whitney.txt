@@ -1,0 +1,46 @@
+Braviary @ Rocky Helmet
+Ability: Defiant
+Level: 25
+Adamant Nature
+- Brave Bird
+- Facade
+- Close Combat
+- U-turn
+
+Miltank @ Leftovers
+Ability: Thick Fat
+Level: 25
+Adamant Nature
+- Milk Drink
+- Rollout
+- Body Slam
+
+Ditto @ Choice Scarf
+Ability: Imposter
+Level: 25
+Impish Nature
+IVs: 30 Atk
+- Transform
+
+Eevee @ Eevium Z
+Ability: Adaptability
+Level: 25
+Adamant Nature
+- Last Resort
+- Celebrate
+
+Tauros @ Assault Vest
+Ability: Sheer Force
+Level: 25
+Jolly Nature
+- Body Slam
+- Stone Edge
+- Iron Head
+- Close Combat
+
+Lopunny-Mega @ Lopunnite
+Ability: Scrappy
+Level: 25
+Adamant Nature
+- Drain Punch
+- Facade

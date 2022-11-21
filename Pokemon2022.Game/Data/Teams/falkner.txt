@@ -1,0 +1,31 @@
+Emolga @ Oran Berry
+Ability: Motor Drive
+Level: 15
+Modest Nature
+IVs: 0 Atk
+- Shock Wave
+- Air Cutter
+- Energy Ball
+
+Staravia @ Sharp Beak
+Ability: Intimidate
+Level: 15
+Adamant Nature
+- Aerial Ace
+- Facade
+- Quick Attack
+
+Magnemite @ Occa Berry
+Ability: Analytic
+Level: 15
+Quiet Nature
+IVs: 0 Atk
+- Mirror Shot
+- Thunder Shock
+
+Archen @ Berry Juice
+Ability: Defeatist
+Level: 15
+Jolly Nature
+- Rock Slide
+- Acrobatics

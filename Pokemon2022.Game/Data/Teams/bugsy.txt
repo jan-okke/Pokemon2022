@@ -1,0 +1,49 @@
+Dewpider @ Eviolite
+Ability: Water Bubble
+Level: 21
+Adamant Nature
+- Liquidation
+- Leech Life
+
+Shuckle @ Iapapa Berry
+Ability: Gluttony
+Level: 21
+Calm Nature
+IVs: 0 Atk
+- Stealth Rock
+- Sticky Web
+- Toxic
+- Protect
+
+Scyther @ Silver Powder
+Ability: Technician
+Level: 21
+Adamant Nature
+- Bug Bite
+
+Ferroseed @ Rocky Helmet
+Ability: Iron Barbs
+Level: 21
+Relaxed Nature
+IVs: 0 Spe
+- Toxic
+- Protect
+- Gyro Ball
+- Knock Off
+
+Beedrill @ Scope Lens
+Ability: Sniper
+Level: 21
+Adamant Nature
+- Poison Fang
+- Brick Break
+
+Butterfree @ Wide Lens
+Ability: Compound Eyes
+Level: 21
+Timid Nature
+IVs: 0 Atk
+- Sleep Powder
+- Giga Drain
+- Bug Buzz
+- Quiver Dance

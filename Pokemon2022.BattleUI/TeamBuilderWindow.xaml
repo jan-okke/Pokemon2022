@@ -1,0 +1,408 @@
+﻿<Window x:Class="Pokemon2022.BattleUI.TeamBuilderWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pokemon2022.BattleUI"
+             mc:Ignorable="d"
+             Title="Team Builder"
+             d:DesignHeight="1000" d:DesignWidth="1200">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button Click="Save" Margin="5" Content="Save"></Button>
+        </DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Margin="5" Grid.Row="0" HorizontalContentAlignment="Center" Width="100" Content="Teams"></Label>
+                <ListBox Name="TeamListBox" SelectionChanged="SelectTeam" Margin="5" Grid.Row="1"></ListBox>
+                <Button Click="AddTeam" Margin="5" Grid.Row="2" Content="Add"></Button>
+            </Grid>
+            <DockPanel Grid.Column="1">
+                <Grid Margin="5" DockPanel.Dock="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <!--<RowDefinition Height="30"></RowDefinition>-->
+                    </Grid.RowDefinitions>
+                    <Label Margin="5" Grid.Row="0" HorizontalContentAlignment="Center" Width="100" Content="Pokemons"></Label>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Background="AliceBlue" Margin="5" Grid.Row="0" Grid.Column="0">
+                            <Button Click="EditPokemon1" Margin="5" Content="Edit"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Pokemon 1"></Label>
+                                <Image Name="Pokemon1Type1Image" Margin="5"></Image>
+                                <Image Name="Pokemon1Type2Image" Margin="5"></Image>
+                            </StackPanel>
+                            <Label Name="Pokemon1Ability" Margin="5" HorizontalContentAlignment="Center" Content="Ability"></Label>
+                            <Label Name="Pokemon1Item" Margin="5" HorizontalContentAlignment="Center" Content="Item"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon1Move1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 1"></Label>
+                                <Image Name="Pokemon1Move1Image1" Margin="5"></Image>
+                                <Image Name="Pokemon1Move1Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon1Move2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 2"></Label>
+                                <Image Name="Pokemon1Move2Image1" Margin="5"></Image>
+                                <Image Name="Pokemon1Move2Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon1Move3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 3"></Label>
+                                <Image Name="Pokemon1Move3Image1" Margin="5"></Image>
+                                <Image Name="Pokemon1Move3Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon1Move4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 4"></Label>
+                                <Image Name="Pokemon1Move4Image1" Margin="5"></Image>
+                                <Image Name="Pokemon1Move4Image2" Margin="5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Background="AliceBlue" Margin="5" Grid.Row="0" Grid.Column="1">
+                            <Button Click="EditPokemon2" Margin="5" Content="Edit"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Pokemon 2"></Label>
+                                <Image Name="Pokemon2Type1Image" Margin="5"></Image>
+                                <Image Name="Pokemon2Type2Image" Margin="5"></Image>
+                            </StackPanel>
+                            <Label Name="Pokemon2Ability" Margin="5" HorizontalContentAlignment="Center" Content="Ability"></Label>
+                            <Label Name="Pokemon2Item" Margin="5" HorizontalContentAlignment="Center" Content="Item"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon2Move1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 1"></Label>
+                                <Image Name="Pokemon2Move1Image1" Margin="5"></Image>
+                                <Image Name="Pokemon2Move1Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon2Move2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 2"></Label>
+                                <Image Name="Pokemon2Move2Image1" Margin="5"></Image>
+                                <Image Name="Pokemon2Move2Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon2Move3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 3"></Label>
+                                <Image Name="Pokemon2Move3Image1" Margin="5"></Image>
+                                <Image Name="Pokemon2Move3Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon2Move4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 4"></Label>
+                                <Image Name="Pokemon2Move4Image1" Margin="5"></Image>
+                                <Image Name="Pokemon2Move4Image2" Margin="5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Background="AliceBlue" Margin="5" Grid.Row="1" Grid.Column="0">
+                            <Button Click="EditPokemon3" Margin="5" Content="Edit"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Pokemon 3"></Label>
+                                <Image Name="Pokemon3Type1Image" Margin="5"></Image>
+                                <Image Name="Pokemon3Type2Image" Margin="5"></Image>
+                            </StackPanel>
+                            <Label Name="Pokemon3Ability" Margin="5" HorizontalContentAlignment="Center" Content="Ability"></Label>
+                            <Label Name="Pokemon3Item" Margin="5" HorizontalContentAlignment="Center" Content="Item"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon3Move1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 1"></Label>
+                                <Image Name="Pokemon3Move1Image1" Margin="5"></Image>
+                                <Image Name="Pokemon3Move1Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon3Move2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 2"></Label>
+                                <Image Name="Pokemon3Move2Image1" Margin="5"></Image>
+                                <Image Name="Pokemon3Move2Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon3Move3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 3"></Label>
+                                <Image Name="Pokemon3Move3Image1" Margin="5"></Image>
+                                <Image Name="Pokemon3Move3Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon3Move4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 4"></Label>
+                                <Image Name="Pokemon3Move4Image1" Margin="5"></Image>
+                                <Image Name="Pokemon3Move4Image2" Margin="5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Background="AliceBlue" Margin="5" Grid.Row="1" Grid.Column="1">
+                            <Button Click="EditPokemon4" Margin="5" Content="Edit"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Pokemon 4"></Label>
+                                <Image Name="Pokemon4Type1Image" Margin="5"></Image>
+                                <Image Name="Pokemon4Type2Image" Margin="5"></Image>
+                            </StackPanel>
+                            <Label Name="Pokemon4Ability" Margin="5" HorizontalContentAlignment="Center" Content="Ability"></Label>
+                            <Label Name="Pokemon4Item" Margin="5" HorizontalContentAlignment="Center" Content="Item"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon4Move1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 1"></Label>
+                                <Image Name="Pokemon4Move1Image1" Margin="5"></Image>
+                                <Image Name="Pokemon4Move1Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon4Move2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 2"></Label>
+                                <Image Name="Pokemon4Move2Image1" Margin="5"></Image>
+                                <Image Name="Pokemon4Move2Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon4Move3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 3"></Label>
+                                <Image Name="Pokemon4Move3Image1" Margin="5"></Image>
+                                <Image Name="Pokemon4Move3Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon4Move4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 4"></Label>
+                                <Image Name="Pokemon4Move4Image1" Margin="5"></Image>
+                                <Image Name="Pokemon4Move4Image2" Margin="5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Background="AliceBlue" Margin="5" Grid.Row="2" Grid.Column="0">
+                            <Button Click="EditPokemon5" Margin="5" Content="Edit"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon5Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Pokemon 5"></Label>
+                                <Image Name="Pokemon5Type1Image" Margin="5"></Image>
+                                <Image Name="Pokemon5Type2Image" Margin="5"></Image>
+                            </StackPanel>
+                            <Label Name="Pokemon5Ability" Margin="5" HorizontalContentAlignment="Center" Content="Ability"></Label>
+                            <Label Name="Pokemon5Item" Margin="5" HorizontalContentAlignment="Center" Content="Item"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon5Move1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 1"></Label>
+                                <Image Name="Pokemon5Move1Image1" Margin="5"></Image>
+                                <Image Name="Pokemon5Move1Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon5Move2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 2"></Label>
+                                <Image Name="Pokemon5Move2Image1" Margin="5"></Image>
+                                <Image Name="Pokemon5Move2Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon5Move3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 3"></Label>
+                                <Image Name="Pokemon5Move3Image1" Margin="5"></Image>
+                                <Image Name="Pokemon5Move3Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon5Move4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 4"></Label>
+                                <Image Name="Pokemon5Move4Image1" Margin="5"></Image>
+                                <Image Name="Pokemon5Move4Image2" Margin="5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Background="AliceBlue" Margin="5" Grid.Row="2" Grid.Column="1">
+                            <Button Click="EditPokemon6" Margin="5" Content="Edit"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon6Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Pokemon 6"></Label>
+                                <Image Name="Pokemon6Type1Image" Margin="5"></Image>
+                                <Image Name="Pokemon6Type2Image" Margin="5"></Image>
+                            </StackPanel>
+                            <Label Name="Pokemon6Ability" Margin="5" HorizontalContentAlignment="Center" Content="Ability"></Label>
+                            <Label Name="Pokemon6Item" Margin="5" HorizontalContentAlignment="Center" Content="Item"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon6Move1Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 1"></Label>
+                                <Image Name="Pokemon6Move1Image1" Margin="5"></Image>
+                                <Image Name="Pokemon6Move1Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon6Move2Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 2"></Label>
+                                <Image Name="Pokemon6Move2Image1" Margin="5"></Image>
+                                <Image Name="Pokemon6Move2Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon6Move3Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 3"></Label>
+                                <Image Name="Pokemon6Move3Image1" Margin="5"></Image>
+                                <Image Name="Pokemon6Move3Image2" Margin="5"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="Pokemon6Move4Name" Margin="5" HorizontalContentAlignment="Center" Width="100" Content="Move 4"></Label>
+                                <Image Name="Pokemon6Move4Image1" Margin="5"></Image>
+                                <Image Name="Pokemon6Move4Image2" Margin="5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <!--<Button Margin="5" Grid.Row="2" Content="Add"></Button>-->
+                </Grid>
+            </DockPanel>
+            <Grid Margin="5" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <Label Content="Species"></Label>
+                    <ComboBox Name="SelectedSpecies" SelectionChanged="SelectOtherSpecies" Margin="5"></ComboBox>
+                </DockPanel>
+                <Label Grid.Row="1" HorizontalContentAlignment="Center" Content="BaseStats"></Label>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0">
+                        <Label Width="35" Content="HP"></Label>
+                        <TextBox Name="SelectedBaseHP" Margin="5" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="0" Grid.Column="1">
+                        <Label Width="35" Content="ATK"></Label>
+                        <TextBox Name="SelectedBaseAtk" Margin="5" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="0">
+                        <Label Width="35" Content="DEF"></Label>
+                        <TextBox Name="SelectedBaseDef" Margin="5" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <Label Width="35" Content="SPA"></Label>
+                        <TextBox Name="SelectedBaseSpAtk" Margin="5" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.Column="0">
+                        <Label Width="35" Content="SPD"></Label>
+                        <TextBox Name="SelectedBaseSpDef" Margin="5" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.Column="1">
+                        <Label Width="35" Content="SPE"></Label>
+                        <TextBox Name="SelectedBaseSpeed" Margin="5" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Types"></Label>
+                    <TextBox Name="SelectedType1" Grid.Column="1" Margin="5" IsReadOnly="True"></TextBox>
+                    <TextBox Name="SelectedType2" Grid.Column="2" Margin="5" IsReadOnly="True"></TextBox>
+                </Grid>
+                <DockPanel Grid.Row="4">
+                    <Label Content="Ability"></Label>
+                    <ComboBox Name="SelectedAbility" Margin="5"></ComboBox>
+                </DockPanel>
+                <DockPanel Grid.Row="5">
+                    <Label Content="Item"></Label>
+                    <ComboBox Name="SelectedItem" Margin="5"></ComboBox>
+                </DockPanel>
+                <DockPanel Grid.Row="6">
+                    <Label Content="Level"></Label>
+                    <TextBox Name="SelectedLevel" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="100"></TextBox>
+                </DockPanel>
+                <Label Grid.Row="7" HorizontalContentAlignment="Center" Content="EVs"></Label>
+                <Grid Grid.Row="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0">
+                        <Label Width="35" Content="HP"></Label>
+                        <TextBox Name="SelectedEVHP" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="0" Grid.Column="1">
+                        <Label Width="35" Content="ATK"></Label>
+                        <TextBox Name="SelectedEVAtk" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="0">
+                        <Label Width="35" Content="DEF"></Label>
+                        <TextBox Name="SelectedEVDef" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <Label Width="35" Content="SPA"></Label>
+                        <TextBox Name="SelectedEVSpAtk" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.Column="0">
+                        <Label Width="35" Content="SPD"></Label>
+                        <TextBox Name="SelectedEVSpDef" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.Column="1">
+                        <Label Width="35" Content="SPE"></Label>
+                        <TextBox Name="SelectedEVSpeed" Margin="5"></TextBox>
+                    </DockPanel>
+                </Grid>
+                <Label Grid.Row="9" HorizontalContentAlignment="Center" Content="IVs"></Label>
+                <Grid Grid.Row="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0">
+                        <Label Width="35" Content="HP"></Label>
+                        <TextBox Name="SelectedIVHP" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="0" Grid.Column="1">
+                        <Label Width="35" Content="ATK"></Label>
+                        <TextBox Name="SelectedIVAtk" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="0">
+                        <Label Width="35" Content="DEF"></Label>
+                        <TextBox Name="SelectedIVDef" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <Label Width="35" Content="SPA"></Label>
+                        <TextBox Name="SelectedIVSpAtk" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.Column="0">
+                        <Label Width="35" Content="SPD"></Label>
+                        <TextBox Name="SelectedIVSpDef" Margin="5"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" Grid.Column="1">
+                        <Label Width="35" Content="SPE"></Label>
+                        <TextBox Name="SelectedIVSpeed" Margin="5"></TextBox>
+                    </DockPanel>
+                </Grid>
+                <DockPanel Grid.Row="11">
+                    <Label Content="Nature"></Label>
+                    <ComboBox Name="SelectedNature" Margin="5"></ComboBox>
+                </DockPanel>
+                <Label Grid.Row="12" HorizontalContentAlignment="Center" Content="Moves"></Label>
+                <Grid Grid.Row="13">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ComboBox Name="SelectedMove1" Grid.Row="0" Grid.Column="0" Margin="5"></ComboBox>
+                    <ComboBox Name="SelectedMove2" Grid.Row="0" Grid.Column="1" Margin="5"></ComboBox>
+                    <ComboBox Name="SelectedMove3" Grid.Row="1" Grid.Column="0" Margin="5"></ComboBox>
+                    <ComboBox Name="SelectedMove4" Grid.Row="1" Grid.Column="1" Margin="5"></ComboBox>
+                </Grid>
+                <Button Click="ApplyChanges" Grid.Row="15" Margin="5" Content="Apply changes"></Button>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

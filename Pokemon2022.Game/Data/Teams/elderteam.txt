@@ -1,0 +1,32 @@
+Hoothoot @ Wide Lens
+Ability: Tinted Lens
+Level: 12
+Timid Nature
+IVs: 0 Atk
+- Hypnosis
+- Air Slash
+- Extrasensory
+- Nasty Plot
+
+Growlithe @ Charcoal
+Ability: Intimidate
+Level: 12
+Adamant Nature
+- Flame Wheel
+- Return
+
+Cacnea @ Big Root
+Ability: Water Absorb
+Level: 12
+Brave Nature
+- Mega Drain
+- Drain Punch
+
+Chinchou @ Oran Berry
+Ability: Volt Absorb
+Level: 12
+Modest Nature
+IVs: 0 Atk
+- Thunder Wave
+- Bubble Beam
+- Shock Wave

@@ -1,0 +1,57 @@
+Sableye @ Light Clay
+Ability: Prankster
+Level: 30
+Calm Nature
+IVs: 0 Atk
+- Reflect
+- Light Screen
+- Will-O-Wisp
+- Shadow Ball
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 30
+Timid Nature
+IVs: 0 Atk
+- Shadow Ball
+- Sludge Wave
+- Giga Drain
+- Thunderbolt
+
+Chandelure @ Life Orb
+Ability: Flame Body
+Level: 30
+Modest Nature
+IVs: 0 Atk
+- Flamethrower
+- Shadow Ball
+- Energy Ball
+
+Drifblim @ Weakness Policy
+Ability: Unburden
+Level: 30
+Rash Nature
+- Calm Mind
+- Shadow Ball
+- Thunderbolt
+- Acrobatics
+
+Aegislash @ Leftovers
+Ability: Stance Change
+Level: 30
+Sassy Nature
+IVs: 0 Atk
+- Toxic
+- King's Shield
+- Shadow Ball
+- Flash Cannon
+
+Dusclops @ Eviolite
+Ability: Pressure
+Level: 30
+Sassy Nature
+- Will-O-Wisp
+- Shadow Punch
+- Rest
+- Brick Break
+

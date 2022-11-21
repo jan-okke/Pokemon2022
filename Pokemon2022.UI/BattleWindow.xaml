@@ -1,0 +1,32 @@
+﻿<Window x:Class="Pokemon2022.UI.BattleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pokemon2022.UI"
+        mc:Ignorable="d"
+        Title="BattleWindow" Height="450" Width="800">
+    <Grid>
+        <Image Name="BattleBGImage" HorizontalAlignment="Left" Height="450" Margin="0,0,0,0" VerticalAlignment="Top" Width="800"/>
+        <Image Name="PlayerPokemonBase" HorizontalAlignment="Left" Height="71" Margin="86,240,0,0" VerticalAlignment="Top" Width="171"/>
+        <Image Name="EnemyBase" HorizontalAlignment="Left" Height="71" Margin="560,130,0,0" VerticalAlignment="Top" Width="171"/>
+        <Image Name="OpponentOverviewImage" HorizontalAlignment="Left" Height="81" Margin="0,69,0,0" VerticalAlignment="Top" Width="246" Source="/databox_normal_foe.png"/>
+        <Image Name="PlayerOverviewImage" HorizontalAlignment="Left" Height="81" Margin="554,224,0,0" VerticalAlignment="Top" Width="246" Source="/databox_normal.png"/>
+        <ProgressBar Name="PlayerHPBar" HorizontalAlignment="Left" Height="8" Margin="682,261,0,0" VerticalAlignment="Top" Width="92"/>
+        <ProgressBar Name="EnemyHPBar" HorizontalAlignment="Left" Height="8" Margin="112,106,0,0" VerticalAlignment="Top" Width="91"/>
+        <TextBlock Name="EnemyNameBlock" HorizontalAlignment="Left" Height="17" Margin="10,84,0,0" TextWrapping="Wrap" Text="OppPokemon" VerticalAlignment="Top" Width="84"/>
+        <TextBlock Name="PlayerNameBlock" HorizontalAlignment="Left" Height="16" Margin="597,237,0,0" TextWrapping="Wrap" Text="PlayerPokemon" VerticalAlignment="Top" Width="86"/>
+        <TextBlock Name="PlayerHPBlock" HorizontalAlignment="Left" Height="18" Margin="664,272,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="0 / 0 HP default" VerticalAlignment="Top" Width="114"/>
+        <TextBlock Name="PlayerLevelBlock" HorizontalAlignment="Left" Height="18" Margin="717,237,0,0" TextWrapping="Wrap" Text="PlayerLevel" VerticalAlignment="Top" Width="59"/>
+        <TextBlock Name="EnemyLevelBlock" HorizontalAlignment="Left" Height="18" Margin="144,84,0,0" TextWrapping="Wrap" Text="OppLevel" VerticalAlignment="Top" Width="59"/>
+        <Image Name="OpponentImage" HorizontalAlignment="Left" Height="111" Margin="538,44,0,0" VerticalAlignment="Top" Width="198"/>
+        <Image Name="PlayerPokemonImage" HorizontalAlignment="Left" Height="111" Margin="76,195,0,0" VerticalAlignment="Top" Width="198"/>
+        <ProgressBar Name="PlayerExpBar" HorizontalAlignment="Left" Height="3" Margin="592,295,0,0" VerticalAlignment="Top" Width="182"/>
+        <TextBox Name="OutputTextBox" IsReadOnly="true" FontSize="25" HorizontalAlignment="Left" Height="80" Margin="10,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="555"/>
+        <Button Click="Button_Fight" Content="Fight" HorizontalAlignment="Left" Height="40" Margin="565,319,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Click="Button_Bag" Content="Bag" HorizontalAlignment="Left" Height="40" Margin="665,319,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Click="Button_Pokemon" Content="Pokemon" HorizontalAlignment="Left" Height="40" Margin="565,359,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Click="Button_Run" Content="Run" HorizontalAlignment="Left" Height="40" Margin="665,359,0,0" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+</Window>

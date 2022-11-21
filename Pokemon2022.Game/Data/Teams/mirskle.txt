@@ -1,0 +1,39 @@
+Floette @ Grassy Seed
+Level: 19
+Bold Nature
+Ability: Flower Veil 
+EVs: 252 HP / 252 Def / 4 SpD
+- Moonblast
+- Petal Blizzard
+- Wish
+- Grassy Terrain
+
+Gloom @ Leftovers
+Level: 21
+Bold Nature
+Ability: Chlorophyll
+EVs: 252 HP / 252 Def / 4 SpD
+- Apple Acid
+- Moonblast
+- Ingrain
+- Sleep Powder
+
+Weedle @ Silver Powder
+Level: 17
+Adamant Nature
+Ability: Technician
+EVs: 6 HP / 252 Atk / 252 Spe
+- Bug Bite
+- Electroweb
+- Poison Sting
+- String Shot
+
+Comfey @ Leftovers
+Level: 18
+Bold Nature
+Ability: Triage
+EVs: 252 HP / 252 Def / 4 SpD
+- Draining Kiss
+- Helping Hand
+- Flower Shield
+- Floral Healing

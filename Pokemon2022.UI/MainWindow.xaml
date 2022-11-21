@@ -1,0 +1,15 @@
+﻿<Window x:Class="Pokemon2022.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pokemon2022.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Click="Continue" Content="Continue" HorizontalAlignment="Left" Height="115" Margin="159,53,0,0" VerticalAlignment="Top" Width="362"/>
+        <Button Click="NewGame" Content="New Game" HorizontalAlignment="Left" Height="32" Margin="159,168,0,0" VerticalAlignment="Top" Width="362"/>
+        <Button Click="Options" Content="Options" HorizontalAlignment="Left" Height="32" Margin="159,200,0,0" VerticalAlignment="Top" Width="362"/>
+        <Button Click="Exit" Content="Exit" HorizontalAlignment="Left" Height="32" Margin="159,232,0,0" VerticalAlignment="Top" Width="362"/>
+    </Grid>
+</Window>

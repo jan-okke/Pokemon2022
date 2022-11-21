@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Pokemon2022.Console": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
