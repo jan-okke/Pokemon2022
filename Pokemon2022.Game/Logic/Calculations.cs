@@ -200,7 +200,7 @@ namespace Pokemon2022.Game.Logic
             }
             return 1;
         }
-        private static decimal GetEffMod(PokemonType attackingType, PokemonType defendingType)
+        public static decimal GetEffMod(PokemonType attackingType, PokemonType defendingType)
         {
             switch (attackingType)
             {
@@ -289,7 +289,7 @@ namespace Pokemon2022.Game.Logic
                     throw new InvalidPokemonTypeException(attackingType);
             }
         }
-        private static decimal GetEffMod(Pokemon defender, Move move)
+        public static decimal GetEffMod(Pokemon defender, Move move)
         {
             return GetEffMod(move.MoveType, defender.Types[0]) * GetEffMod(move.MoveType, defender.Types[1]);
         }

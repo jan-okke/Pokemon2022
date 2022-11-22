@@ -57,17 +57,30 @@ namespace Pokemon2022.Game.Logic
             defender.CurrentHP -= damage;
             return false;
         }
-        public static void BattleTurn(Pokemon attacker, Pokemon defender, Move attackerMove, Move defenderMove, Battle battle)//, UIController ui)
+        public static List<BattleState> BattleTurn(Pokemon attacker, Pokemon defender, Move attackerMove, Move defenderMove, Battle battle)//, UIController ui)
         {
+            List<BattleState> states = new();
             if (IsFaster(attacker, defender, attackerMove, defenderMove))
             {
-                if (BattleAction(attacker, defender, attackerMove, battle)) return;
+                if (BattleAction(attacker, defender, attackerMove, battle))
+                {
+                    states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, true)));
+                    return states;
+                }
                 BattleAction(defender, attacker, defenderMove, battle);
+                states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, defenderMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, false)));
+                return states;
             }
             else
             {
-                if (BattleAction(defender, attacker, defenderMove, battle)) return;
+                if (BattleAction(defender, attacker, defenderMove, battle))
+                {
+                    states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, true)));
+                    return states;
+                }
                 BattleAction(attacker, defender, attackerMove, battle);
+                states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, false)));
+                return states;
             }
         }
 

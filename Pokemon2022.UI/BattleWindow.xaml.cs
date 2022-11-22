@@ -43,7 +43,7 @@ namespace Pokemon2022.UI
             UIController = new(this);
             new Thread(() => TextUpdateThread()).Start();
         }
-        private void InitializeData(bool firstTime = true)
+        private void InitializeData(bool firstTime = true, bool modified = false)
         {
             if (firstTime)
             {
@@ -58,15 +58,27 @@ namespace Pokemon2022.UI
                 OpponentImage.Source = OpponentPokemon.FrontSprite; 
                 OutputTextBox.Text = $"A wild {OpponentPokemon.Name} appeared!\nGo, {PlayerPokemon.Name}!";
             }
-            PlayerHPBar.Value = PlayerPokemon.CurrentHP * 100 / PlayerPokemon.Stats.HP;
-            PlayerHPBlock.Text = $"{PlayerPokemon.CurrentHP}/{PlayerPokemon.Stats.HP}";
-            EnemyHPBar.Value = OpponentPokemon.CurrentHP * 100 / OpponentPokemon.Stats.HP;
-            PlayerLevelBlock.Text = $"Lv. {PlayerPokemon.Level}";
-            EnemyLevelBlock.Text = $"Lv. {OpponentPokemon.Level}";
+            if (!modified)
+            {
+                PlayerHPBar.Value = PlayerPokemon.CurrentHP * 100 / PlayerPokemon.Stats.HP;
+                PlayerHPBlock.Text = $"{PlayerPokemon.CurrentHP}/{PlayerPokemon.Stats.HP}";
+                EnemyHPBar.Value = OpponentPokemon.CurrentHP * 100 / OpponentPokemon.Stats.HP;
+                PlayerLevelBlock.Text = $"Lv. {PlayerPokemon.Level}";
+                EnemyLevelBlock.Text = $"Lv. {OpponentPokemon.Level}";
+            }
         }
-        public void Update()
+        public void Update(BattleState? state = null, int? delay = null, bool modified = false)
         {
-            InitializeData(false);
+            delay ??= 0;
+            if (state == null) InitializeData(false, modified: modified);
+            else
+            {
+                foreach (string s in state.DisplayText)
+                {
+                    ActionQueue.Add(new ActionData(s, (int)delay, state));
+                }
+            }
+            //InitializeData(false, state, (int)delay);
         }
         private void TextUpdateThread()
         {
@@ -78,7 +90,13 @@ namespace Pokemon2022.UI
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, () =>
                 {
                     OutputTextBox.Text = next.Text;
-                    Update();
+                    var state = next.State;
+                    PlayerHPBar.Value = state.Attacker.CurrentHP * 100 / state.Attacker.Stats.HP;
+                    PlayerHPBlock.Text = $"{state.Attacker.CurrentHP}/{state.Attacker.Stats.HP}";
+                    EnemyHPBar.Value = state.Defender.CurrentHP * 100 / state.Defender.Stats.HP;
+                    PlayerLevelBlock.Text = $"Lv. {state.Attacker.Level}";
+                    EnemyLevelBlock.Text = $"Lv. {state.Defender.Level}";
+                    Update(modified: true);
                 });
                 Thread.Sleep(next.Delay);
             }
