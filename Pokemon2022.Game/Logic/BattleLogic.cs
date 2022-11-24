@@ -64,22 +64,24 @@ namespace Pokemon2022.Game.Logic
             {
                 if (BattleAction(attacker, defender, attackerMove, battle))
                 {
-                    states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, true)));
+                    states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, true)));
                     return states;
                 }
+                states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, false)));
                 BattleAction(defender, attacker, defenderMove, battle);
-                states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, defenderMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, false)));
+                states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, defenderMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, false)));
                 return states;
             }
             else
             {
                 if (BattleAction(defender, attacker, defenderMove, battle))
                 {
-                    states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, true)));
+                    states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, true)));
                     return states;
                 }
+                states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, false)));
                 BattleAction(attacker, defender, attackerMove, battle);
-                states.Add(new BattleState(attacker, defender, battle, TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, false)));
+                states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, false)));
                 return states;
             }
         }
