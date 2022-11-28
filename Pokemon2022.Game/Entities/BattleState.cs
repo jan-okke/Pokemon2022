@@ -12,6 +12,7 @@ namespace Pokemon2022.Game.Entities
         public Pokemon Defender;
         public Battle Battle;
         public List<string> DisplayText;
+        public Pokemon? Winner;
 
         public BattleState(Pokemon attacker, Pokemon defender, Battle battle, List<string> displayText)
         {
@@ -19,6 +20,10 @@ namespace Pokemon2022.Game.Entities
             Defender = defender;
             Battle = battle;
             DisplayText = displayText;
+            if (Attacker.CurrentHP > 0 && Defender.CurrentHP > 0) Winner = null;
+            if (Attacker.CurrentHP <= 0 && Defender.CurrentHP > 0) Winner = Defender.Clone();
+            if (Attacker.CurrentHP > 0 && Defender.CurrentHP <= 0) Winner = Attacker.Clone();
+            if (Attacker.CurrentHP <= 0 && Defender.CurrentHP <= 0) throw new Exception("Both Pokemon fainted in a state");
         }
     }
 }

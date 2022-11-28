@@ -47,7 +47,7 @@ namespace Pokemon2022.Game.Logic
         {
             int damage = Calculations.CalculateDamage(battle, attacker, defender, move);
             //ui.AddActionData(new($"{attacker.Name} used {move.Name}!", 600));
-            if (damage > defender.CurrentHP)
+            if (damage >= defender.CurrentHP)
             {
                 defender.CurrentHP = 0;
                 OnFaint(attacker, defender);
