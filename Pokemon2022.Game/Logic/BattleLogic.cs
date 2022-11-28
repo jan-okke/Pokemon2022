@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Pokemon2022.Game.Entities;
 using Pokemon2022.Game.Entities.Enums;
+using Pokemon2022.Game.Entities.Exceptions;
 
 namespace Pokemon2022.Game.Logic
 {
@@ -39,7 +40,7 @@ namespace Pokemon2022.Game.Logic
             }
             return Coinflip();
         }
-        private static List<string> OnFaint(Pokemon killer, Pokemon fainted)
+        private static List<string> OnFaint(Pokemon killer, Pokemon fainted, PokemonParty faintedParty)
         {
             List<string> text = new();
             fainted.IsAlive = false;
@@ -66,16 +67,32 @@ namespace Pokemon2022.Game.Logic
                     }
                 }
             }
+            killer.CalculateStats();
+            try
+            {
+                faintedParty.GetFirstAlivePokemon();
+            }
+            catch (NoPokemonAliveException e)
+            {
+                text.Add(e.Message);
+            }
             return text;
         }
-        private static bool BattleAction(Pokemon attacker, Pokemon defender, Move move, Battle battle)//, UIController ui)
+        private static bool BattleAction(Pokemon attacker, Pokemon defender, Move move, Battle battle, bool playerAction)//, UIController ui)
         {
             int damage = Calculations.CalculateDamage(battle, attacker, defender, move);
             //ui.AddActionData(new($"{attacker.Name} used {move.Name}!", 600));
             if (damage >= defender.CurrentHP)
             {
                 defender.CurrentHP = 0;
-                OnFaint(attacker, defender);
+                if (playerAction)
+                {
+                    OnFaint(attacker, defender, battle.EnemyParty);
+                }
+                else
+                {
+                    OnFaint(attacker, defender, battle.PlayerParty);
+                }
                 //ui.AddActionData(new($"{defender.Name} fainted!", 600));
                 return true;
             }
@@ -87,25 +104,25 @@ namespace Pokemon2022.Game.Logic
             List<BattleState> states = new();
             if (IsFaster(attacker, defender, attackerMove, defenderMove))
             {
-                if (BattleAction(attacker, defender, attackerMove, battle))
+                if (BattleAction(attacker, defender, attackerMove, battle, true))
                 {
                     states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, true)));
                     return states;
                 }
                 states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, false)));
-                BattleAction(defender, attacker, defenderMove, battle);
+                BattleAction(defender, attacker, defenderMove, battle, false);
                 states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, defenderMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, false)));
                 return states;
             }
             else
             {
-                if (BattleAction(defender, attacker, defenderMove, battle))
+                if (BattleAction(defender, attacker, defenderMove, battle, false))
                 {
                     states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, true)));
                     return states;
                 }
                 states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(defender, attacker, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(attacker, defenderMove), false, false, false)));
-                BattleAction(attacker, defender, attackerMove, battle);
+                BattleAction(attacker, defender, attackerMove, battle, true);
                 states.Add(new BattleState(attacker.Clone(), defender.Clone(), battle.Clone(), TextHelper.GetMoveUseString(attacker, defender, battle.IsWildBattle, attackerMove, (double)Calculations.GetEffMod(defender, attackerMove), false, false, false)));
                 return states;
             }
