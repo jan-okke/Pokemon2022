@@ -31,6 +31,7 @@ namespace Pokemon2022.Game.Entities
         public List<Move> Moves;
         public Ability Ability;
         public int Level;
+        public int Experience;
         public Stats IVs;
         public Stats EVs;
         public Stats Stats;
@@ -105,6 +106,7 @@ namespace Pokemon2022.Game.Entities
                 Moves = Moves,
                 Ability = Ability,
                 Level = Level,
+                Experience = Experience,
                 IVs = IVs,
                 EVs = EVs,
                 Stats = Stats,

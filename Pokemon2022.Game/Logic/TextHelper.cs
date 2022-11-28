@@ -58,5 +58,30 @@ namespace Pokemon2022.Game.Logic
             }
             return strings;
         }
+        public static string GetExpGainString(Pokemon killer, int amount)
+        {
+            if (amount == 1) return $"{killer.Name} gained {amount} experience point!";
+            return $"{killer.Name} gained {amount} experience points!";
+        }
+        public static string GetLevelUpString(Pokemon killer, int level)
+        {
+            return $"{killer.Name} grew to level {level}!";
+        }
+        public static List<string> GetMoveLearnString(Pokemon killer, Move move)
+        {
+            List<string> strings = new();
+            if (killer.Moves.Count == 4)
+            {
+                strings.Add($"{killer.Name} wants to learn {move.Name}.");
+                strings.Add($"But {killer.Name} already knows 4 moves.");
+                strings.Add($"Delete a move for {move.Name}?");
+                strings.Add("<Choice [Yes, No]>");
+            }
+            else
+            {
+                strings.Add($"{killer.Name} learned {move.Name}!");
+            }
+            return strings;
+        }
     }
 }

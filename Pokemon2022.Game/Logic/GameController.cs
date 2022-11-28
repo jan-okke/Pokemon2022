@@ -108,7 +108,6 @@ namespace Pokemon2022.Game.Logic
                 BattleType = BattleType.SingleBattle
             };
         }
-
         public static Move RandomMove(Pokemon pokemon)
         {
             Random random = new();

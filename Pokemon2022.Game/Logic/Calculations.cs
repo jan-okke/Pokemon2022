@@ -395,5 +395,17 @@ namespace Pokemon2022.Game.Logic
         {
             return 1;
         }
+        public static int CalculateExpGain(Pokemon killer, Pokemon fainted)
+        {
+            return 0; // TODO
+        }
+        public static int CalculateLevel(int experience)
+        {
+            return (int)Math.Pow(experience, 1.0 / 3);
+        }
+        public static int CalculateExperience(int level)
+        {
+            return (int)Math.Pow(level, 3);
+        }
     }
 }

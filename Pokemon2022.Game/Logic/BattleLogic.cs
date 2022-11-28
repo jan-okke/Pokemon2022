@@ -39,9 +39,34 @@ namespace Pokemon2022.Game.Logic
             }
             return Coinflip();
         }
-        private static void OnFaint(Pokemon killer, Pokemon fainted)
+        private static List<string> OnFaint(Pokemon killer, Pokemon fainted)
         {
+            List<string> text = new();
             fainted.IsAlive = false;
+            int experience = Calculations.CalculateExpGain(killer, fainted);
+            text.Add(TextHelper.GetExpGainString(killer, experience));
+            killer.Experience += experience;
+            int oldLevel = killer.Level;
+            killer.Level = Calculations.CalculateLevel(killer.Experience);
+            if (killer.Level > oldLevel) // Leveled up 
+            {
+                for (int level = oldLevel; level <= killer.Level; level++)
+                {
+                    text.Add(TextHelper.GetLevelUpString(killer, level));
+                    foreach (int key in killer.LevelUpLearnset.Keys)
+                    {
+                        if (level == key)
+                        {
+                            List<Move> moves = killer.LevelUpLearnset[key];
+                            foreach (Move m in moves)
+                            {
+                                foreach (string s in TextHelper.GetMoveLearnString(killer, m)) text.Add(s);
+                            }
+                        }
+                    }
+                }
+            }
+            return text;
         }
         private static bool BattleAction(Pokemon attacker, Pokemon defender, Move move, Battle battle)//, UIController ui)
         {
