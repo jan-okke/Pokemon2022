@@ -1,4 +1,5 @@
 ﻿using Pokemon2022.Game.Entities;
+using Pokemon2022.Game.Entities.Enums;
 using Pokemon2022.Game.Logic;
 using System;
 using System.Collections.Generic;
@@ -10,108 +11,69 @@ namespace Pokemon2022.Console
 {
     public class Analyzer
     {
-        private static string GetIndexString(int index)
+        public static Dictionary<int, List<BattleState>> Analyze(Pokemon attacker, Pokemon defender, Battle battle, int depth)
         {
-            string ret = $"{index%1000}";
-            while (index > 1000)
+            /*
+            List<BattleState> states = new();
+            foreach (Move am in attacker.Moves)
             {
-                index -= index % 1000;
-                index = index / 1000;
-                ret = $"{index%1000}.{ret}";
-            }
-            return ret;
-        }
-        public static Dictionary<long, string> Analyze(Pokemon attacker, Pokemon defender, Battle battle, int depth)
-        {
-            Dictionary<long, string> result = new Dictionary<long, string>();
-            List<State> States = new();
-            List<State> _States = new();
-            int index = 0;
-            int atkWinCount = 0;
-            int oppWinCount = 0;
-            int total = 0;
-            foreach (Move attMove in attacker.Moves)
-            {
-                foreach (Move oppMove in defender.Moves)
+                foreach (Move dm in defender.Moves)
                 {
-                    index++;
-                    Pokemon att = attacker.Clone();
-                    Pokemon opp = defender.Clone();
-                    Move atMove = attMove.Clone();
-                    Move opMove = oppMove.Clone();
-                    Battle bat = battle.Clone();
-                    //Console.WriteLine($"{att.GetHashCode()} | {opp.GetHashCode()}");
-                    BattleLogic.BattleTurn(att, opp, atMove, opMove, bat);
-                    string before = $"Outcome [{index}] {attMove.Name} | {oppMove.Name}\n" +
-                        $"Attacker: {att.CurrentHP} / {att.Stats.HP}\n" +
-                        $"Defender: {opp.CurrentHP} / {opp.Stats.HP}";
-                    result.Add(index * 1000, before);
-                    if (att.IsAlive && opp.IsAlive) States.Add(new(att, opp, bat, atMove, opMove, index));
-                    if (att.IsAlive && !opp.IsAlive) atkWinCount++;
-                    if (!att.IsAlive && opp.IsAlive) oppWinCount++;
-                    total++;
+                    states.Add(BattleLogic.BattleTurn(attacker.Clone(), defender.Clone(), am, dm, battle.Clone()).Last());
+                }
+            }
+            List<BattleState> subStates = new();
+            foreach (BattleState state in states)
+            {
+                if (state.Winner != null)
+                {
+                    System.Console.WriteLine("Early winner");
+                    continue;
+                }
+                foreach (Move am in state.Attacker.Moves)
+                {
+                    foreach (Move dm in state.Defender.Moves)
+                    {
+                        subStates.Add(BattleLogic.BattleTurn(state.Attacker.Clone(), state.Defender.Clone(), am, dm, state.Battle.Clone()).Last());
+                    }
+                }
+            }
+            foreach (BattleState state in subStates)
+            {
+                System.Console.WriteLine($"And the winner is {state.Winner}");
+            }
+            */
+            Dictionary<int, List<BattleState>> fullData = new();
+            fullData.Add(0, new());
+            foreach (Move am in attacker.Moves)
+            {
+                foreach (Move dm in defender.Moves)
+                {
+                    fullData[0].Add(BattleLogic.BattleTurn(attacker.Clone(), defender.Clone(), am, dm, battle.Clone()).Last());
                 }
             }
             for (int i = 1; i < depth; i++)
             {
-                if (i % 2 == 0)
+                System.Console.WriteLine($"Checking Turn {i+1}");
+                fullData.Add(i, new());
+                if (fullData[i - 1].Count == 0) return fullData;
+                foreach (BattleState state in fullData[i-1])
                 {
-                    foreach (State state in _States)
+                    if (state.Winner != null)
                     {
-                        index = 0;
-                        foreach (Move attMove in state.PlayerPokemon.Moves)
-                        {
-                            foreach (Move oppMove in state.OpponentPokemon.Moves)
-                            {
-                                index++;
-                                Pokemon att = state.PlayerPokemon.Clone();
-                                Pokemon opp = state.OpponentPokemon.Clone();
-                                Move atMove = attMove.Clone();
-                                Move opMove = oppMove.Clone();
-                                Battle bat = state.Battle.Clone();
-                                //Console.WriteLine($"{att.GetHashCode()} | {opp.GetHashCode()}");
-                                BattleLogic.BattleTurn(att, opp, atMove, opMove, bat);
-                                result.Add(state.Index * 1000*i + index, $"Outcome [{GetIndexString(state.Index)}.{index}] {state.AttackerMove.Name} | {state.OpponentMove.Name} | {attMove.Name} | {oppMove.Name}\n" +
-                                    $"Attacker: {att.CurrentHP} / {att.Stats.HP}\n" +
-                                    $"Defender: {opp.CurrentHP} / {opp.Stats.HP}");
-                                if (att.IsAlive && !opp.IsAlive) atkWinCount++;
-                                if (!att.IsAlive && opp.IsAlive) oppWinCount++;
-                                if (att.IsAlive && opp.IsAlive) States.Add(new(att, opp, bat, atMove, opMove, state.Index * 1000*i + index));
-                                total++;
-                            }
-                        }
+                        System.Console.WriteLine($"{state.Winner.Name} won Turn {i}");
+                        continue;
                     }
-                }
-                else
-                {
-                    foreach (State state in States)
+                    foreach (Move am in state.Attacker.Moves)
                     {
-                        index = 0;
-                        foreach (Move attMove in state.PlayerPokemon.Moves)
+                        foreach (Move dm in state.Defender.Moves)
                         {
-                            foreach (Move oppMove in state.OpponentPokemon.Moves)
-                            {
-                                index++;
-                                Pokemon att = state.PlayerPokemon.Clone();
-                                Pokemon opp = state.OpponentPokemon.Clone();
-                                Move atMove = attMove.Clone();
-                                Move opMove = oppMove.Clone();
-                                Battle bat = state.Battle.Clone();
-                                //Console.WriteLine($"{att.GetHashCode()} | {opp.GetHashCode()}");
-                                BattleLogic.BattleTurn(att, opp, atMove, opMove, bat);
-                                result.Add(state.Index * 1000*i + index, $"Outcome [{GetIndexString(state.Index)}.{index}] {state.AttackerMove.Name} | {state.OpponentMove.Name} | {attMove.Name} | {oppMove.Name}\n" +
-                                    $"Attacker: {att.CurrentHP} / {att.Stats.HP}\n" +
-                                    $"Defender: {opp.CurrentHP} / {opp.Stats.HP}");
-                                if (att.IsAlive && !opp.IsAlive) atkWinCount++;
-                                if (!att.IsAlive && opp.IsAlive) oppWinCount++;
-                                if (att.IsAlive && opp.IsAlive) _States.Add(new(att, opp, bat, atMove, opMove, state.Index * 1000*i + index));
-                                total++;
-                            }
+                            fullData[i].Add(BattleLogic.BattleTurn(state.Attacker.Clone(), state.Defender.Clone(), am, dm, state.Battle.Clone()).Last());
                         }
                     }
                 }
             }
-            return result;
+            return fullData;
         }
     }
 }
