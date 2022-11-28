@@ -142,7 +142,15 @@ namespace Pokemon2022.Console
                 if (s.Contains("use move "))
                 {
                     Move? temp = GetMoveFromPokemon(PlayerParty.GetFirstAlivePokemon(), s.Split(new[] { "use move " }, StringSplitOptions.None)[1]);
-                    if (temp != null) BattleLogic.BattleTurn(PlayerParty.GetFirstAlivePokemon(), EnemyParty.GetFirstAlivePokemon(), temp, GameController.RandomMove(EnemyParty.GetFirstAlivePokemon()), Battle);
+                    if (temp != null)
+                    {
+                        List<BattleState> states = BattleLogic.BattleTurn(PlayerParty.GetFirstAlivePokemon(), EnemyParty.GetFirstAlivePokemon(), temp, GameController.RandomMove(EnemyParty.GetFirstAlivePokemon()), Battle);
+                        foreach (BattleState state in states)
+                        {
+                            foreach (string _s in state.DisplayText)
+                            System.Console.WriteLine(_s);
+                        }
+                    }
                 }
             }
             Print("Battle is over!");
