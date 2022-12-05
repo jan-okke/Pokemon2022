@@ -113,5 +113,14 @@ namespace Pokemon2022.Game.Logic
             Random random = new();
             return pokemon.Moves[random.Next(0, pokemon.Moves.Count)];
         }
+        public static List<Move> GetAvailableMoves(Pokemon pokemon)
+        {
+            List<Move> allMoves = new();
+            foreach (int key in pokemon.LevelUpLearnset.Keys)
+            {
+                allMoves.Add(pokemon.Moves[key]);
+            }
+            return allMoves;
+        }
     }
 }

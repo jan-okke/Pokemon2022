@@ -18,9 +18,9 @@ PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\sou
 //PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
 //PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
 
-//Analyzer.Analyze(playerParty.GetFirstAlivePokemon(), enemyParty.GetFirstAlivePokemon(), GameController.StartTrainerBattle(playerParty, enemyParty), 10);
+Analyzer.Analyze(playerParty.GetFirstAlivePokemon(), enemyParty.GetFirstAlivePokemon(), GameController.StartTrainerBattle(playerParty, enemyParty), 10);
 //Console.WriteLine("Ok");
-new BattleSimulation(playerParty, enemyParty);
+//new BattleSimulation(playerParty, enemyParty);
 //Battle testBattle = GameController.StartTrainerBattle(playerParty, enemyParty);
 //Pokemon playerPokemon = playerParty.GetFirstAlivePokemon();
 //Pokemon enemyPokemon = enemyParty.GetFirstAlivePokemon();
