@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Pokemon2022.Game.Entities;
 using Pokemon2022.Game.Entities.Enums;
 using Pokemon2022.Game.Entities.Exceptions;
+using Pokemon2022.Game.Extensions;
 
 namespace Pokemon2022.Game.Logic
 {

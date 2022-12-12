@@ -29,7 +29,8 @@ namespace Pokemon2022.Game.Extensions
         public static void EndTurn(this Battle battle)
         {
             if (!battle.IsBattleOngoing()) return;
-            if (battle.EnemyCurrentPokemon.DoesTakeDamageFromWeather(battle.Weather)) battle.EnemyCurrentPokemon.Tak
+            if (battle.EnemyCurrentPokemon.DoesTakeDamageFromWeather(battle.Weather)) battle.EnemyCurrentPokemon.TakeDamage((int)(battle.EnemyCurrentPokemon.Stats.HP * battle.Weather.GetDamagePercentageValue()));
+            if (battle.PlayerCurrentPokemon.DoesTakeDamageFromWeather(battle.Weather)) battle.PlayerCurrentPokemon.TakeDamage((int)(battle.PlayerCurrentPokemon.Stats.HP * battle.Weather.GetDamagePercentageValue()));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Pokemon2022.Game.Entities;
 using Pokemon2022.Game.Entities.Enums;
+using Pokemon2022.Game.Extensions;
 using Pokemon2022.Game.Logic;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,6 @@
 ﻿using Pokemon2022.Game;
 using Pokemon2022.Game.Entities;
+using Pokemon2022.Game.Extensions;
 using Pokemon2022.Game.Logic;
 using Pokemon2022.Game.TeamLoaderExtention;
 using System;
@@ -29,8 +30,8 @@ namespace Pokemon2022.UI
         }
         public void NewGame()
         {
-            PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
-            PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
+            PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
+            PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
             //PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
             //PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
             

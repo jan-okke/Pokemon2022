@@ -3,6 +3,7 @@ using Pokemon2022.Game.Logic;
 using Pokemon2022.Game.TeamLoaderExtention;
 using Pokemon2022.Game.Factory;
 using Pokemon2022.Console;
+using Pokemon2022.Game.Extensions;
 
 /*
 Pokemon playerPokemon = GameController.NewPokemon("Charmander", 5, new() { GameController.GetMove("Tackle")});
@@ -12,11 +13,11 @@ Battle testBattle = GameController.StartWildBattle(playerParty, "Bulbasaur", 5);
 Console.WriteLine(Calculations.CalculateDamage(testBattle, playerPokemon, testBattle.EnemyParty.GetFirstAlivePokemon(), playerPokemon.Moves[0]));
 */
 
-PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
-PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\elderteam.txt");
+//PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
+//PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\elderteam.txt");
 
-//PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
-//PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
+PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
+PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
 
 Analyzer.Analyze(playerParty.GetFirstAlivePokemon(), enemyParty.GetFirstAlivePokemon(), GameController.StartTrainerBattle(playerParty, enemyParty), 10);
 //Console.WriteLine("Ok");
@@ -111,5 +112,5 @@ Console.WriteLine(atkWinCount);
 Console.WriteLine(oppWinCount);
 Console.WriteLine(total);
 */
-
+Console.WriteLine("Done");
 Console.ReadLine();
