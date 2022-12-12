@@ -14,6 +14,8 @@ namespace Pokemon2022.Game.Entities
         public PokemonParty EnemyParty;
         public BattlerSide PlayerSide;
         public BattlerSide EnemySide;
+        public Pokemon PlayerCurrentPokemon;
+        public Pokemon EnemyCurrentPokemon;
         public Weather Weather;
         public Terrain Terrain;
         public bool IsWildBattle;
@@ -38,6 +40,8 @@ namespace Pokemon2022.Game.Entities
             EnemyParty = new();
             PlayerSide = new();
             EnemySide = new();
+            PlayerCurrentPokemon = new();
+            EnemyCurrentPokemon = new();
             Weather = Weather.None;
             Terrain = Terrain.None;
             IsWildBattle = false;
@@ -63,6 +67,8 @@ namespace Pokemon2022.Game.Entities
                 EnemyParty = EnemyParty,
                 PlayerSide = PlayerSide,
                 EnemySide = EnemySide,
+                PlayerCurrentPokemon = PlayerCurrentPokemon,
+                EnemyCurrentPokemon = EnemyCurrentPokemon,
                 Weather = Weather,
                 Terrain = Terrain,
                 IsWildBattle = IsWildBattle,

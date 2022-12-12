@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokemon2022.Game.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Pokemon2022.Game.Entities
         public int AuroraVeilTurns;
         public bool HasMudSport;
         public bool HasWaterSport;
+        public List<Hazard> Hazards;
         public BattlerSide()
         {
             HasReflect = false;
@@ -26,6 +28,7 @@ namespace Pokemon2022.Game.Entities
             AuroraVeilTurns = 0;
             HasMudSport = false;
             HasWaterSport = false;
+            Hazards = new();
         }
     }
 }

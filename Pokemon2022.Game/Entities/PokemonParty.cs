@@ -15,22 +15,7 @@ namespace Pokemon2022.Game.Entities
         {
             Pokemons = new List<Pokemon>();
         }
-        public Pokemon GetFirstAlivePokemon()
-        {
-            foreach (Pokemon p in Pokemons)
-            {
-                if (p.IsAlive) return p;
-            }
-            throw new NoPokemonAliveException();
-        }
-        public bool IsAlive()
-        {
-            foreach (Pokemon p in Pokemons)
-            {
-                if (p.IsAlive) return true;
-            }
-            return false;
-        }
+        
         public override string ToString()
         {
             return "Pokemon Party";

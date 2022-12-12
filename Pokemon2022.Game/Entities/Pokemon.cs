@@ -40,6 +40,8 @@ namespace Pokemon2022.Game.Entities
         public PokemonGender Gender;
         public PokemonNature Nature;
 
+        public int DynamaxTurns;
+
         public BitmapImage BackSprite;
         public BitmapImage FrontSprite;
         public Pokemon()
@@ -72,6 +74,8 @@ namespace Pokemon2022.Game.Entities
             IsMinimized = false;
             IsUnderground = false;
             IsUnderwater = false;
+
+            DynamaxTurns = 0;
         }
         public void CalculateStats()
         {
@@ -100,6 +104,8 @@ namespace Pokemon2022.Game.Entities
                 IsMinimized = IsMinimized,
                 IsUnderground = IsUnderground,
                 IsUnderwater = IsUnderwater,
+
+                DynamaxTurns = DynamaxTurns,
 
                 CurrentHP = CurrentHP,
                 Status = Status,
