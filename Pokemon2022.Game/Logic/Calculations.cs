@@ -374,26 +374,36 @@ namespace Pokemon2022.Game.Logic
         }
         public static int CalculateStat(Pokemon pokemon, Stat stat)
         {
-            switch (stat)
+            return stat switch
             {
-                case Stat.HP:
-                    return (int)Math.Floor((2 * pokemon.BaseStats.HP + pokemon.IVs.HP + (pokemon.EVs.HP / 4)) * pokemon.Level / 100) + pokemon.Level + 10;
-                case Stat.Attack:
-                    return (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.Attack + pokemon.IVs.Attack + (pokemon.EVs.Attack / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat));
-                case Stat.Defense:
-                    return (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.Defense + pokemon.IVs.Defense + (pokemon.EVs.Defense / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat));
-                case Stat.SpecialAttack:
-                    return (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.SpecialAttack + pokemon.IVs.SpecialAttack + (pokemon.EVs.SpecialAttack / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat));
-                case Stat.SpecialDefense:
-                    return (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.SpecialDefense + pokemon.IVs.SpecialDefense + (pokemon.EVs.SpecialDefense / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat));
-                case Stat.Speed:
-                    return (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.Speed + pokemon.IVs.Speed + (pokemon.EVs.Speed / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat));
-            }
-            throw new InvalidStatException(stat);
+                Stat.HP => (int)Math.Floor((2 * pokemon.BaseStats.HP + pokemon.IVs.HP + (pokemon.EVs.HP / 4)) * pokemon.Level / 100) + pokemon.Level + 10,
+                Stat.Attack => (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.Attack + pokemon.IVs.Attack + (pokemon.EVs.Attack / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat)),
+                Stat.Defense => (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.Defense + pokemon.IVs.Defense + (pokemon.EVs.Defense / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat)),
+                Stat.SpecialAttack => (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.SpecialAttack + pokemon.IVs.SpecialAttack + (pokemon.EVs.SpecialAttack / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat)),
+                Stat.SpecialDefense => (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.SpecialDefense + pokemon.IVs.SpecialDefense + (pokemon.EVs.SpecialDefense / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat)),
+                Stat.Speed => (int)Math.Floor((int)Math.Floor((2 * pokemon.BaseStats.Speed + pokemon.IVs.Speed + (pokemon.EVs.Speed / 4)) * pokemon.Level / 100) + 5 * CalculateNatureMod(pokemon, stat)),
+                _ => throw new InvalidStatException(stat),
+            };
         }
         public static double CalculateStatStageMod(int value)
         {
-            return 1;
+            return value switch
+            {
+                6 => 4,
+                5 => 3.5,
+                4 => 3,
+                3 => 2.5,
+                2 => 2,
+                1 => 1.5,
+                0 => 1,
+                -1 => 1.0 / 1.5,
+                -2 => 1.0 / 2,
+                -3 => 1.0 / 2.5,
+                -4 => 1.0 / 3,
+                -5 => 1.0 / 3.5,
+                -6 => 1.0 / 4,
+                _ => throw new ArgumentException("Value war kein Wert von (-6) bis (+6)"),
+            };
         }
         public static int CalculateExpGain(Pokemon killer, Pokemon fainted)
         {

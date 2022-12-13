@@ -28,6 +28,8 @@ namespace Pokemon2022.Game.Entities
 
         public int CurrentHP;
         public PokemonStatus Status;
+        public int StatusTurn;
+        public List<PokemonStatusSecondary> SecondaryStatusList;
         public List<Move> Moves;
         public Ability Ability;
         public int Level;
@@ -56,6 +58,8 @@ namespace Pokemon2022.Game.Entities
             LevelUpLearnset = new();
 
             Status = new PokemonStatus();
+            StatusTurn = 0;
+            SecondaryStatusList = new List<PokemonStatusSecondary>();
             Moves = new List<Move>();
             Ability = new Ability();
             IVs = new Stats();
@@ -109,6 +113,8 @@ namespace Pokemon2022.Game.Entities
 
                 CurrentHP = CurrentHP,
                 Status = Status,
+                StatusTurn = StatusTurn,
+                SecondaryStatusList = SecondaryStatusList,
                 Moves = Moves,
                 Ability = Ability,
                 Level = Level,

@@ -9,7 +9,7 @@ namespace Pokemon2022.Game.Entities.Enums
     public enum PokemonStatusSecondary
     {
         Confused,
-        LechSeed,
+        LeechSeed,
         Trapped
     }
 }

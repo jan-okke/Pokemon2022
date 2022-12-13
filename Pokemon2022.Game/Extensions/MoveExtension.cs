@@ -22,5 +22,9 @@ namespace Pokemon2022.Game.Extensions
             move.PowerPointsLeft += amount;
             if (move.PowerPointsLeft > move.GetBoostedPP()) move.PowerPointsLeft = move.GetBoostedPP();
         }
+        public static bool IsFaster(this Move move, Move otherMove)
+        {
+            return move.Priority > otherMove.Priority;
+        }
     }
 }
