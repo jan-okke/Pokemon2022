@@ -21,7 +21,7 @@ PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\sou
 
 //Analyzer.Analyze(playerParty.GetFirstAlivePokemon(), enemyParty.GetFirstAlivePokemon(), GameController.StartTrainerBattle(playerParty, enemyParty), 10);
 
-NewAnalyzer.Analyze(GameController.StartTrainerBattle(playerParty, enemyParty));
+NewAnalyzer.AnalyzeBattle(GameController.StartTrainerBattle(playerParty, enemyParty), 10);
 //Console.WriteLine("Ok");
 //new BattleSimulation(playerParty, enemyParty);
 //Battle testBattle = GameController.StartTrainerBattle(playerParty, enemyParty);

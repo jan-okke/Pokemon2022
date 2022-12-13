@@ -20,5 +20,14 @@ namespace Pokemon2022.Game.Entities
         {
             return "Pokemon Party";
         }
+        public PokemonParty Clone()
+        {
+            List<Pokemon> clones = new();
+            foreach (Pokemon p in Pokemons)
+            {
+                clones.Add(p.Clone());
+            }
+            return new PokemonParty() { Pokemons = clones };
+        }
     }
 }

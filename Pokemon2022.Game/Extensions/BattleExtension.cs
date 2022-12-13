@@ -101,6 +101,8 @@ namespace Pokemon2022.Game.Extensions
         }
         private static BattleState MakeState(Battle battle)
         {
+            //Console.WriteLine(battle.EnemyCurrentPokemon.CurrentHP);
+            battle.EndTurn();
             return new BattleState(battle.PlayerCurrentPokemon.Clone(), battle.EnemyCurrentPokemon.Clone(), battle.Clone(), new());
         }
         public static List<BattleState> BattleTurn(this Battle battle, Move playerMove, Move enemyMove)

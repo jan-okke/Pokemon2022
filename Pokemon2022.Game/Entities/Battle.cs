@@ -64,12 +64,12 @@ namespace Pokemon2022.Game.Entities
             return new()
             {
                 Turn = Turn,
-                PlayerParty = PlayerParty,
-                EnemyParty = EnemyParty,
+                PlayerParty = PlayerParty.Clone(),
+                EnemyParty = EnemyParty.Clone(),
                 PlayerSide = PlayerSide,
                 EnemySide = EnemySide,
-                PlayerCurrentPokemon = PlayerCurrentPokemon,
-                EnemyCurrentPokemon = EnemyCurrentPokemon,
+                PlayerCurrentPokemon = PlayerCurrentPokemon.Clone(),
+                EnemyCurrentPokemon = EnemyCurrentPokemon.Clone(),
                 Weather = Weather,
                 Terrain = Terrain,
                 IsWildBattle = IsWildBattle,

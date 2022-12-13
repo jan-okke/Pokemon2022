@@ -1,5 +1,6 @@
 ﻿using Pokemon2022.Game.Entities;
 using Pokemon2022.Game.Extensions;
+using Pokemon2022.Game.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,48 @@ namespace Pokemon2022.Console
         {
             battle.Init();
             var states = battle.BattleTurn(battle.PlayerCurrentPokemon.Moves[1], battle.EnemyCurrentPokemon.Moves[1]);
-            // todo, states.battle not correctly cloned? mhm
             battle.EndTurn();
             System.Console.WriteLine(battle);
+        }
+        public static Dictionary<int, List<BattleState>> AnalyzeBattle(Battle battle, int depth)
+        {
+            battle.Init();
+            var attacker = battle.PlayerCurrentPokemon;
+            var defender = battle.EnemyCurrentPokemon;
+            Dictionary<int, List<BattleState>> fullData = new();
+            fullData.Add(0, new());
+            foreach (Move am in attacker.Moves)
+            {
+                foreach (Move dm in defender.Moves)
+                {
+                    var _battle = battle.Clone();
+                    fullData[0].Add(_battle.BattleTurn(am, dm).Last());
+                }
+            }
+            for (int i = 1; i < depth; i++)
+            {
+                System.Console.WriteLine($"Checking Turn {i + 1}");
+                fullData.Add(i, new());
+                if (fullData[i - 1].Count == 0) return fullData;
+                foreach (BattleState state in fullData[i - 1])
+                {
+                    if (!state.Battle.IsBattleOngoing()) { System.Console.WriteLine("Battle over"); continue; }
+                    if (state.Winner != null)
+                    {
+                        System.Console.WriteLine($"{state.Winner.Name} won Turn {i}");
+                        continue;
+                    }
+                    foreach (Move am in state.Battle.PlayerCurrentPokemon.Moves)
+                    {
+                        foreach (Move dm in state.Battle.EnemyCurrentPokemon.Moves)
+                        {
+                            var _battle = state.Battle.Clone();
+                            fullData[i].Add(_battle.BattleTurn(am, dm).Last());
+                        }
+                    }
+                }
+            }
+            return fullData;
         }
     }
 }
