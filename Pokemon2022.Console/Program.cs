@@ -4,7 +4,12 @@ using Pokemon2022.Game.TeamLoaderExtention;
 using Pokemon2022.Game.Factory;
 using Pokemon2022.Console;
 using Pokemon2022.Game.Extensions;
+using Pokemon2022.Game.Entities.Enums;
 
+for (int i = 0; i < 10; i++)
+PBSMaker.GenerateTrainer("Camper", "John", new List<PokemonType>() { PokemonType.Water }, 4, 7, 2, new List<int>() { 2 }, 500, 800);
+
+#region Teststuff
 /*
 Pokemon playerPokemon = GameController.NewPokemon("Charmander", 5, new() { GameController.GetMove("Tackle")});
 PokemonParty playerParty = new() { Pokemons = new() { playerPokemon } };
@@ -13,15 +18,15 @@ Battle testBattle = GameController.StartWildBattle(playerParty, "Bulbasaur", 5);
 Console.WriteLine(Calculations.CalculateDamage(testBattle, playerPokemon, testBattle.EnemyParty.GetFirstAlivePokemon(), playerPokemon.Moves[0]));
 */
 
-PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
-PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\elderteam.txt");
+//PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
+//PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\jan-okke.rockmann\\source\\repos\\jan-okke\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\elderteam.txt");
 
 //PokemonParty playerParty = Loader.LoadFromFile("C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\falkner.txt");
 //PokemonParty enemyParty = Loader.LoadFromFile("C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Data\\Teams\\bugsy.txt");
 
 //Analyzer.Analyze(playerParty.GetFirstAlivePokemon(), enemyParty.GetFirstAlivePokemon(), GameController.StartTrainerBattle(playerParty, enemyParty), 10);
 
-NewAnalyzer.AnalyzeBattle(GameController.StartTrainerBattle(playerParty, enemyParty), 10);
+//NewAnalyzer.AnalyzeBattle(GameController.StartTrainerBattle(playerParty, enemyParty), 10);
 //Console.WriteLine("Ok");
 //new BattleSimulation(playerParty, enemyParty);
 //Battle testBattle = GameController.StartTrainerBattle(playerParty, enemyParty);
@@ -116,3 +121,4 @@ Console.WriteLine(total);
 */
 Console.WriteLine("Done");
 Console.ReadLine();
+#endregion

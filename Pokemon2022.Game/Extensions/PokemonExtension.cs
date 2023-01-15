@@ -5,6 +5,7 @@ using Pokemon2022.Game.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
@@ -162,6 +163,10 @@ namespace Pokemon2022.Game.Extensions
                 default:
                     throw new ArgumentException("Stat was invalid");
             }
+        }
+        public static int GetBST(this Pokemon pokemon)
+        {
+            return pokemon.BaseStats.GetSum();
         }
     }
 }

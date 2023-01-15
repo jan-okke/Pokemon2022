@@ -17,6 +17,7 @@ namespace Pokemon2022.Game.Entities
         public List<Ability> AvailableAbilities;
         public Ability AvailableHiddenAbility;
         public string PokedexEntry;
+        public int Generation;
         public Dictionary<int, List<Move>> LevelUpLearnset;
 
         public string? Nickname;
@@ -101,6 +102,7 @@ namespace Pokemon2022.Game.Entities
                 AvailableAbilities = AvailableAbilities,
                 AvailableHiddenAbility = AvailableHiddenAbility,
                 PokedexEntry = PokedexEntry,
+                Generation= Generation,
                 LevelUpLearnset = LevelUpLearnset,
 
                 IsAlive = IsAlive,

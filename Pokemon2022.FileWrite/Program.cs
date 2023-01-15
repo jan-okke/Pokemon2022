@@ -8,8 +8,8 @@
         }
         public static void WritePokemonFactoryCs()
         {
-            string path = "C:\\Users\\Jan-Okke\\Desktop\\stuff\\Pokemon DarkGold\\Pokemon White X_Mapping\\PBS\\Gen 8";
-            string writepath = "C:\\Users\\Jan-Okke\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Factory";
+            string path = "C:\\Users\\Jan\\Desktop\\Pokemon White X\\Pokemon White X_Mapping\\PBS";
+            string writepath = "C:\\Users\\Jan\\source\\repos\\Pokemon2022\\Pokemon2022.Game\\Factory";
 
             string[] data = File.ReadAllLines(path + "\\pokemon.txt");
             List<string> pokemons = new();
@@ -148,6 +148,8 @@
                         File.AppendAllText(writepath + "\\PokemonFactory.cs", $"\t\t\tPokedexEntry = \"{dex.Replace("\"", "'")}\",\n");
                         break;
                     case "Generation":
+                        int generation = Convert.ToInt32(split[1]);
+                        File.AppendAllText(writepath + "\\PokemonFactory.cs", $"\t\t\tGeneration = {generation},\n");
                         File.AppendAllText(writepath + "\\PokemonFactory.cs", $"\t\t\tFrontSprite = BitmapLoader.GetFrontSprite(PokemonNames.{upname}),\n\t\t\tBackSprite = BitmapLoader.GetBackSprite(PokemonNames.{upname})\n" + "\t\t};\n");
                         break;
                     case "Evolutions":
