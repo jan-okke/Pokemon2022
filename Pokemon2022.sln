@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokemon2022.UI", "Pokemon20
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokemon2022.BattleUI", "Pokemon2022.BattleUI\Pokemon2022.BattleUI.csproj", "{657A29A5-797A-4A5F-A221-CD8447E686C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon2022.GameUI", "Pokemon2022.GameUI\Pokemon2022.GameUI.csproj", "{D01CDBB1-E928-417D-BD89-774B8AFFF252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokemon2022.GameUI", "Pokemon2022.GameUI\Pokemon2022.GameUI.csproj", "{D01CDBB1-E928-417D-BD89-774B8AFFF252}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

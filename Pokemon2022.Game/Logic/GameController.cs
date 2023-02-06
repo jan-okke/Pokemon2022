@@ -12,21 +12,21 @@ namespace Pokemon2022.Game.Logic
 {
     public class GameController
     {
-        public static List<Move> GetMovesAtLevel(Pokemon pokemon, int level)
-        {
-            List<Move> moves = new();
-            foreach (int key in pokemon.LevelUpLearnset.Keys)
-            {
-                if (key <= level)
-                {
-                    foreach (Move m in pokemon.LevelUpLearnset[key])
-                    {
-                        moves.Add(m);
-                    }
-                }
-            }
-            return moves;
-        }
+        //        public static List<Move> GetMovesAtLevel(Pokemon pokemon, int level)
+        //        {
+        //            List<Move> moves = new();
+        //            foreach (int key in pokemon.LevelUpLearnset.Keys)
+        //            {
+        //                if (key <= level)
+        //                {
+        //                    foreach (Move m in pokemon.LevelUpLearnset[key])
+        //                    {
+        //                        moves.Add(m);
+        //                    }
+        //                }
+        //            }
+        //            return moves;
+        //        }
         public static Item GetItem(string name)
         {
             return new()
@@ -59,43 +59,43 @@ namespace Pokemon2022.Game.Logic
             }
             throw new InvalidAbilityException(name);
         }
-        public static Pokemon NewPokemon(string name, int level)
-        {
-            foreach (Pokemon p in PokemonFactory.Pokemons)
-            {
-                if (p.Name == name)
-                {
-                    Pokemon pokemon = p.Clone();
-                    pokemon.Level = level;
-                    pokemon.CalculateStats();
-                    pokemon.CurrentHP = (int)pokemon.Stats.HP;
-                    pokemon.IsAlive = true;
-                    if (pokemon.Types.Length == 1)
-                    {
-                        pokemon.Types = new PokemonType[] { pokemon.Types[0], PokemonType.None };
-                    }
-                    return pokemon;
-                }
-            }
-            throw new InvalidPokemonNameException(name);
-        }
-        public static Pokemon NewPokemon(string name, int level, List<Move> moves)
-        {
-            Pokemon pokemon = NewPokemon(name, level);
-            pokemon.Moves = moves;
-            return pokemon;
-        }
-        public static Battle StartWildBattle(PokemonParty playerParty, string name, int level)
-        {
-            return new Battle() {
-                PlayerParty = playerParty,
-                EnemyParty = new() { Pokemons = new() { NewPokemon(name, level) } },
-                IsWildBattle = true,
-                IsTrainerBattle = false,
-                Turn = 0,
-                BattleType = BattleType.SingleBattle
-            };
-        }
+        //        public static Pokemon NewPokemon(string name, int level)
+        //        {
+        //            foreach (Pokemon p in PokemonFactory.Pokemons)
+        //            {
+        //                if (p.Name == name)
+        //                {
+        //                    Pokemon pokemon = p.Clone();
+        //                    pokemon.Level = level;
+        //                    pokemon.CalculateStats();
+        //                    pokemon.CurrentHP = (int)pokemon.Stats.HP;
+        //                    pokemon.IsAlive = true;
+        //                    if (pokemon.Types.Length == 1)
+        //                    {
+        //                        pokemon.Types = new PokemonType[] { pokemon.Types[0], PokemonType.None };
+        //                    }
+        //                    return pokemon;
+        //                }
+        //            }
+        //            throw new InvalidPokemonNameException(name);
+        //        }
+        //        public static Pokemon NewPokemon(string name, int level, List<Move> moves)
+        //        {
+        //            Pokemon pokemon = NewPokemon(name, level);
+        //            pokemon.Moves = moves;
+        //            return pokemon;
+        //        }
+        //        public static Battle StartWildBattle(PokemonParty playerParty, string name, int level)
+        //        {
+        //            return new Battle() {
+        //                PlayerParty = playerParty,
+        //                EnemyParty = new() { Pokemons = new() { NewPokemon(name, level) } },
+        //                IsWildBattle = true,
+        //                IsTrainerBattle = false,
+        //                Turn = 0,
+        //                BattleType = BattleType.SingleBattle
+        //            };
+        //        }
         public static Battle StartTrainerBattle(PokemonParty playerParty, PokemonParty enemyParty)
         {
             return new Battle()
@@ -108,19 +108,19 @@ namespace Pokemon2022.Game.Logic
                 BattleType = BattleType.SingleBattle
             };
         }
-        public static Move RandomMove(Pokemon pokemon)
-        {
-            Random random = new();
-            return pokemon.Moves[random.Next(0, pokemon.Moves.Count)];
-        }
-        public static List<Move> GetAvailableMoves(Pokemon pokemon)
-        {
-            List<Move> allMoves = new();
-            foreach (int key in pokemon.LevelUpLearnset.Keys)
-            {
-                allMoves.Add(pokemon.Moves[key]);
-            }
-            return allMoves;
-        }
+        //        public static Move RandomMove(Pokemon pokemon)
+        //        {
+        //            Random random = new();
+        //            return pokemon.Moves[random.Next(0, pokemon.Moves.Count)];
+        //        }
+        //        public static List<Move> GetAvailableMoves(Pokemon pokemon)
+        //        {
+        //            List<Move> allMoves = new();
+        //            foreach (int key in pokemon.LevelUpLearnset.Keys)
+        //            {
+        //                allMoves.Add(pokemon.Moves[key]);
+        //            }
+        //            return allMoves;
+        //        }
     }
 }

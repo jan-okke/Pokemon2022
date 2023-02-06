@@ -1,5 +1,6 @@
 ﻿using Pokemon2022.Game.Entities;
 using Pokemon2022.Game.Entities.Enums;
+using Pokemon2022.Game.Extensions;
 using Pokemon2022.Game.Logic;
 using System;
 using System.Collections.Generic;
@@ -33,13 +34,15 @@ namespace Pokemon2022.Game.TeamLoaderExtention
                 else if (line == string.Empty)
                 {
                     if (name is null || level is null) continue;
-                    pokemon = GameController.NewPokemon(name, (int)level);
+                    pokemon = Pokemon.NewPokemon(name);
+                    pokemon.Level = (int)level;
                     if (ability != null) pokemon.Ability = ability;
                     if (nature != null) pokemon.Nature = (PokemonNature)nature;
                     if (item != null) pokemon.HeldItem = item;
                     pokemon.Moves = new();
                     foreach (Move m in moves) pokemon.Moves.Add(m);
                     pokemon.CalculateStats();
+                    pokemon.CurrentHP = (int)pokemon.Stats.HP;
                     party.Pokemons.Add(pokemon);
                     moves = new();
                     name = null;
@@ -58,13 +61,15 @@ namespace Pokemon2022.Game.TeamLoaderExtention
                 }
             }
             if (name is null || level is null) return party;
-            pokemon = GameController.NewPokemon(name, (int)level);
+            pokemon = Pokemon.NewPokemon(name);
+            pokemon.Level = (int)level;
             if (ability != null) pokemon.Ability = ability;
             if (nature != null) pokemon.Nature = (PokemonNature)nature;
             if (item != null) pokemon.HeldItem = item;
             pokemon.Moves = new();
             foreach (Move m in moves) pokemon.Moves.Add(m);
             pokemon.CalculateStats();
+            pokemon.CurrentHP = (int)pokemon.Stats.HP;
             party.Pokemons.Add(pokemon);
             return party;
         }

@@ -1,0 +1,43 @@
+using Pokemon2022.Game.Entities;
+using Pokemon2022.Game.Entities.Enums;
+using Pokemon2022.Game.Factory;
+using System.Collections.Generic;
+
+namespace Pokemon2022.Game.Pokemons
+{
+	public class Magcargo : Pokemon
+	{
+		public override string Name => "Magcargo";
+		public override int Generation => 2;
+		public override string PokedexEntry => "The shell on its back is made of hardened magma. Tens of thousands of years spent living in volcanic craters have turned Magcargo's bodies into magma.";
+		public override PokemonType[] Types => new PokemonType[] {PokemonType.Fire, PokemonType.Rock };
+		public override List<Ability> AvailableAbilities => new List<Ability>() { AbilityFactory.MagmaArmor, AbilityFactory.FlameBody, };
+		public override Ability AvailableHiddenAbility => AbilityFactory.WeakArmor;
+		public override Stats BaseStats => new Stats() {
+			HP = 60,
+			Attack = 50,
+			Defense = 120,
+			SpecialAttack = 90,
+			SpecialDefense = 80,
+			Speed = 30
+		};
+		public override Dictionary<int, List<Move>> LevelUpLearnset => new Dictionary<int, List<Move>>()
+		{
+			[0] = new List<Move>() { MoveFactory.ShellSmash, },
+			[1] = new List<Move>() { MoveFactory.ShellSmash, MoveFactory.EarthPower, MoveFactory.Yawn, MoveFactory.Smog, MoveFactory.Ember, MoveFactory.RockThrow, },
+			[6] = new List<Move>() { MoveFactory.Ember, },
+			[8] = new List<Move>() { MoveFactory.RockThrow, },
+			[13] = new List<Move>() { MoveFactory.Harden, },
+			[15] = new List<Move>() { MoveFactory.Incinerate, },
+			[20] = new List<Move>() { MoveFactory.ClearSmog, },
+			[22] = new List<Move>() { MoveFactory.AncientPower, },
+			[29] = new List<Move>() { MoveFactory.RockSlide, },
+			[34] = new List<Move>() { MoveFactory.LavaPlume, },
+			[36] = new List<Move>() { MoveFactory.Amnesia, },
+			[43] = new List<Move>() { MoveFactory.BodySlam, },
+			[47] = new List<Move>() { MoveFactory.Recover, },
+			[54] = new List<Move>() { MoveFactory.Flamethrower, },
+			[58] = new List<Move>() { MoveFactory.EarthPower, },
+		};
+	}
+}

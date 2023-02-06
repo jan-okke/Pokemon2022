@@ -60,58 +60,58 @@ namespace Pokemon2022.BattleUI
         private List<PokemonParty> Load()
         {
             List<PokemonParty> parties = new();
-            PokemonParty newParty = new();
-            Pokemon currentPokemon = new();
-            foreach (string line in File.ReadAllLines("teambuilder.xml"))
-            {
-                if (line.Contains("<Party>"))
-                {
-                    newParty = new();
-                }
-                if (line.Contains("<Pokemon>"))
-                {
-                    currentPokemon = new();
-                }
-                if (line.Contains("<Name>"))
-                {
-                    var name = line.Split(new[] { "<Name>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
-                    currentPokemon = GameController.NewPokemon(name, 0);
-                }
-                if (line.Contains("<Ability>"))
-                {
-                    var ability = line.Split(new[] { "<Ability>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
-                    currentPokemon.Ability = GameController.GetAbility(ability);
-                }
-                if (line.Contains("<Item>"))
-                {
-                    var item = line.Split(new[] { "<Item>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
-                    currentPokemon.HeldItem = GameController.GetItem(item);
-                }
-                if (line.Contains("<Level>"))
-                {
-                    var level = line.Split(new[] { "<Level>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
-                    currentPokemon.Level = Convert.ToInt32(level);
-                }
-                if (line.Contains("<Nature>"))
-                {
-                    var nature = line.Split(new[] { "<Nature>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
-                    currentPokemon.Nature = (PokemonNature)Enum.Parse(typeof(PokemonNature), nature);
-                }
-                if (line.Contains("<Move>"))
-                {
-                    var move = line.Split(new[] { "<Move>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
-                    currentPokemon.Moves.Add(GameController.GetMove(move));
-                }
+            //PokemonParty newParty = new();
+            //Pokemon currentPokemon = new();
+            //foreach (string line in File.ReadAllLines("teambuilder.xml"))
+            //{
+            //    if (line.Contains("<Party>"))
+            //    {
+            //        newParty = new();
+            //    }
+            //    if (line.Contains("<Pokemon>"))
+            //    {
+            //        currentPokemon = new();
+            //    }
+            //    if (line.Contains("<Name>"))
+            //    {
+            //        var name = line.Split(new[] { "<Name>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+            //        currentPokemon = GameController.NewPokemon(name, 0);
+            //    }
+            //    if (line.Contains("<Ability>"))
+            //    {
+            //        var ability = line.Split(new[] { "<Ability>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+            //        currentPokemon.Ability = GameController.GetAbility(ability);
+            //    }
+            //    if (line.Contains("<Item>"))
+            //    {
+            //        var item = line.Split(new[] { "<Item>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+            //        currentPokemon.HeldItem = GameController.GetItem(item);
+            //    }
+            //    if (line.Contains("<Level>"))
+            //    {
+            //        var level = line.Split(new[] { "<Level>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+            //        currentPokemon.Level = Convert.ToInt32(level);
+            //    }
+            //    if (line.Contains("<Nature>"))
+            //    {
+            //        var nature = line.Split(new[] { "<Nature>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+            //        currentPokemon.Nature = (PokemonNature)Enum.Parse(typeof(PokemonNature), nature);
+            //    }
+            //    if (line.Contains("<Move>"))
+            //    {
+            //        var move = line.Split(new[] { "<Move>" }, StringSplitOptions.None)[1].Split(new[] { "<" }, StringSplitOptions.None)[0];
+            //        currentPokemon.Moves.Add(GameController.GetMove(move));
+            //    }
 
-                if (line.Contains("</Pokemon>"))
-                {
-                    newParty.Pokemons.Add(currentPokemon);
-                }
-                if (line.Contains("</Party>"))
-                {
-                    parties.Add(newParty);
-                }
-            }
+            //    if (line.Contains("</Pokemon>"))
+            //    {
+            //        newParty.Pokemons.Add(currentPokemon);
+            //    }
+            //    if (line.Contains("</Party>"))
+            //    {
+            //        parties.Add(newParty);
+            //    }
+            //}
             return parties;
         }
         private void Init()
@@ -226,12 +226,12 @@ namespace Pokemon2022.BattleUI
 
         private static int GetPokemonNameIndexFromName(string name)
         {
-            int index = 0;
-            foreach (Pokemon p in PokemonFactory.Pokemons)
-            {
-                if (p.Name == name) return index;
-                index++;
-            }
+            //int index = 0;
+            //foreach (Pokemon p in PokemonFactory.Pokemons)
+            //{
+            //    if (p.Name == name) return index;
+            //    index++;
+            //}
             return -1;
         }
         private static int GetMoveNameIndexFromName(string name)
@@ -247,7 +247,7 @@ namespace Pokemon2022.BattleUI
         private void FillPokemonData()
         {
             if (CurrentPokemon is null) return;
-            SelectedSpecies.ItemsSource = PokemonFactory.Pokemons;
+            //SelectedSpecies.ItemsSource = PokemonFactory.Pokemons;
             SelectedSpecies.SelectedIndex = GetPokemonNameIndexFromName(CurrentPokemon.Name);
             SelectedBaseHP.Text = CurrentPokemon.BaseStats.HP.ToString();
             SelectedBaseAtk.Text = CurrentPokemon.BaseStats.Attack.ToString();
@@ -288,9 +288,9 @@ namespace Pokemon2022.BattleUI
         }
         private void AddTeam(object sender, RoutedEventArgs e)
         {
-            Parties.Add(new() { Pokemons = new() { PokemonFactory.Charmander.Clone() } });
-            TeamListBox.ItemsSource = null;
-            TeamListBox.ItemsSource = Parties;
+            //Parties.Add(new() { Pokemons = new() { PokemonFactory.Charmander.Clone() } });
+            //TeamListBox.ItemsSource = null;
+            //TeamListBox.ItemsSource = Parties;
         }
 
         private void SelectTeam(object sender, SelectionChangedEventArgs e)
@@ -303,61 +303,61 @@ namespace Pokemon2022.BattleUI
 
         private void EditPokemon1(object sender, RoutedEventArgs e)
         {
-            if (CurrentParty is null) return;
-            if (CurrentParty.Pokemons.Count == 0) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
-            CurrentPokemon = CurrentParty.Pokemons[0];
-            CurrentPartyIndex = 0;
-            FillPokemonData();
+            //if (CurrentParty is null) return;
+            //if (CurrentParty.Pokemons.Count == 0) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
+            //CurrentPokemon = CurrentParty.Pokemons[0];
+            //CurrentPartyIndex = 0;
+            //FillPokemonData();
         }
 
         private void EditPokemon2(object sender, RoutedEventArgs e)
         {
 
-            if (CurrentParty is null) return;
-            if (CurrentParty.Pokemons.Count == 1) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
-            CurrentPokemon = CurrentParty.Pokemons[1];
-            CurrentPartyIndex = 1;
-            FillPokemonData();
+            //if (CurrentParty is null) return;
+            //if (CurrentParty.Pokemons.Count == 1) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
+            //CurrentPokemon = CurrentParty.Pokemons[1];
+            //CurrentPartyIndex = 1;
+            //FillPokemonData();
         }
 
         private void EditPokemon3(object sender, RoutedEventArgs e)
         {
 
-            if (CurrentParty is null) return;
-            if (CurrentParty.Pokemons.Count == 2) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
-            CurrentPokemon = CurrentParty.Pokemons[2];
-            CurrentPartyIndex = 2;
-            FillPokemonData();
+            //if (CurrentParty is null) return;
+            //if (CurrentParty.Pokemons.Count == 2) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
+            //CurrentPokemon = CurrentParty.Pokemons[2];
+            //CurrentPartyIndex = 2;
+            //FillPokemonData();
         }
 
         private void EditPokemon4(object sender, RoutedEventArgs e)
         {
 
-            if (CurrentParty is null) return;
-            if (CurrentParty.Pokemons.Count == 3) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
-            CurrentPokemon = CurrentParty.Pokemons[3];
-            CurrentPartyIndex = 3;
-            FillPokemonData();
+            //if (CurrentParty is null) return;
+            //if (CurrentParty.Pokemons.Count == 3) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
+            //CurrentPokemon = CurrentParty.Pokemons[3];
+            //CurrentPartyIndex = 3;
+            //FillPokemonData();
         }
 
         private void EditPokemon5(object sender, RoutedEventArgs e)
         {
 
-            if (CurrentParty is null) return;
-            if (CurrentParty.Pokemons.Count == 4) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
-            CurrentPokemon = CurrentParty.Pokemons[4];
-            CurrentPartyIndex = 4;
-            FillPokemonData();
+            //if (CurrentParty is null) return;
+            //if (CurrentParty.Pokemons.Count == 4) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
+            //CurrentPokemon = CurrentParty.Pokemons[4];
+            //CurrentPartyIndex = 4;
+            //FillPokemonData();
         }
 
         private void EditPokemon6(object sender, RoutedEventArgs e)
         {
 
-            if (CurrentParty is null) return;
-            if (CurrentParty.Pokemons.Count == 5) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
-            CurrentPokemon = CurrentParty.Pokemons[5];
-            CurrentPartyIndex = 5;
-            FillPokemonData();
+            //if (CurrentParty is null) return;
+            //if (CurrentParty.Pokemons.Count == 5) CurrentParty.Pokemons.Add(PokemonFactory.Bulbasaur.Clone());
+            //CurrentPokemon = CurrentParty.Pokemons[5];
+            //CurrentPartyIndex = 5;
+            //FillPokemonData();
         }
 
         private void ApplyChanges(object sender, RoutedEventArgs e)

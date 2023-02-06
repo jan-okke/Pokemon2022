@@ -11,14 +11,15 @@ namespace Pokemon2022.Game.Entities
 {
     public class Pokemon
     {
-        public string Name;
-        public Stats BaseStats;
-        public PokemonType[] Types;
-        public List<Ability> AvailableAbilities;
-        public Ability AvailableHiddenAbility;
-        public string PokedexEntry;
-        public int Generation;
-        public Dictionary<int, List<Move>> LevelUpLearnset;
+        public virtual string Name { get; }
+        public virtual Stats BaseStats { get; }
+        public virtual PokemonType[] Types { get; }
+        public virtual List<Ability> AvailableAbilities { get; }
+        public virtual Ability AvailableHiddenAbility { get; }
+        
+        public virtual string PokedexEntry { get; }
+        public virtual int Generation { get; }
+        public virtual Dictionary<int, List<Move>> LevelUpLearnset { get; }
 
         public string? Nickname;
         public bool IsAlive;
@@ -47,17 +48,26 @@ namespace Pokemon2022.Game.Entities
 
         public BitmapImage BackSprite;
         public BitmapImage FrontSprite;
+        public static T NewPokemon<T>(string name)
+        {
+            name = "Pokemon2022.Game.Pokemons." + name;
+            Type? t = Type.GetType(name);
+            if (t is null) throw new ArgumentException(null, nameof(name));
+            object? obj = Activator.CreateInstance(t);
+            if (obj is null) throw new NotImplementedException();
+            return (T)obj;
+        }
+        public static Pokemon NewPokemon(string name)
+        {
+            name = "Pokemon2022.Game.Pokemons." + name;
+            Type? t = Type.GetType(name);
+            if (t is null) throw new ArgumentException(null, nameof(name));
+            object? obj = Activator.CreateInstance(t);
+            if (obj is null) throw new NotImplementedException();
+            return (Pokemon)obj;
+        }
         public Pokemon()
         {
-            Name = string.Empty;
-            Nickname = null;
-            PokedexEntry = string.Empty;
-            BaseStats = new Stats();
-            Types = new PokemonType[2];
-            AvailableAbilities = new List<Ability>();
-            AvailableHiddenAbility = new Ability();
-            LevelUpLearnset = new();
-
             Status = new PokemonStatus();
             StatusTurn = 0;
             SecondaryStatusList = new List<PokemonStatusSecondary>();
@@ -82,60 +92,89 @@ namespace Pokemon2022.Game.Entities
 
             DynamaxTurns = 0;
         }
-        public void CalculateStats()
-        {
-            Stats.HP = Calculations.CalculateStat(this, Stat.HP);
-            Stats.Attack = Calculations.CalculateStat(this, Stat.Attack);
-            Stats.Defense = Calculations.CalculateStat(this, Stat.Defense);
-            Stats.SpecialAttack = Calculations.CalculateStat(this, Stat.SpecialAttack);
-            Stats.SpecialDefense = Calculations.CalculateStat(this, Stat.SpecialDefense);
-            Stats.Speed = Calculations.CalculateStat(this, Stat.Speed);
-        }
+
         public Pokemon Clone()
         {
-            return new Pokemon()
-            {
-                Name = Name,
-                Nickname = Nickname,
-                BaseStats = BaseStats,
-                Types = Types,
-                AvailableAbilities = AvailableAbilities,
-                AvailableHiddenAbility = AvailableHiddenAbility,
-                PokedexEntry = PokedexEntry,
-                Generation= Generation,
-                LevelUpLearnset = LevelUpLearnset,
-
-                IsAlive = IsAlive,
-                IsDynamaxed = IsDynamaxed,
-                IsMinimized = IsMinimized,
-                IsUnderground = IsUnderground,
-                IsUnderwater = IsUnderwater,
-
-                DynamaxTurns = DynamaxTurns,
-
-                CurrentHP = CurrentHP,
-                Status = Status,
-                StatusTurn = StatusTurn,
-                SecondaryStatusList = SecondaryStatusList,
-                Moves = Moves,
-                Ability = Ability,
-                Level = Level,
-                Experience = Experience,
-                IVs = IVs,
-                EVs = EVs,
-                Stats = Stats,
-                StatStages = StatStages,
-                HeldItem = HeldItem,
-                Gender = Gender,
-                Nature = Nature,
-
-                BackSprite = BackSprite,
-                FrontSprite = FrontSprite
-            };
+            return this.Copy();
         }
-        public override string ToString()
-        {
-            return Name;
-        }
+
+        //public Pokemon()
+        //{
+        //    Name = string.Empty;
+        //    Nickname = null;
+        //    PokedexEntry = string.Empty;
+        //    BaseStats = new Stats();
+        //    Types = new PokemonType[2];
+        //    AvailableAbilities = new List<Ability>();
+        //    AvailableHiddenAbility = new Ability();
+        //    LevelUpLearnset = new();
+
+        //    Status = new PokemonStatus();
+        //    StatusTurn = 0;
+        //    SecondaryStatusList = new List<PokemonStatusSecondary>();
+        //    Moves = new List<Move>();
+        //    Ability = new Ability();
+        //    IVs = new Stats();
+        //    EVs = new Stats();
+        //    Stats = new Stats();
+        //    StatStages = new Stats();
+        //    HeldItem = new Item();
+        //    Gender = PokemonGender.Genderless;
+        //    Nature = PokemonNature.None;
+
+        //    BackSprite = new BitmapImage();
+        //    FrontSprite = new BitmapImage();
+
+        //    IsAlive = true;
+        //    IsDynamaxed = false;
+        //    IsMinimized = false;
+        //    IsUnderground = false;
+        //    IsUnderwater = false;
+
+        //    DynamaxTurns = 0;
+        //}
+        //public Pokemon Clone()
+        //{
+        //    return new Pokemon()
+        //    {
+        //        //Name = Name,
+        //        //Nickname = Nickname,
+        //        //BaseStats = BaseStats,
+        //        //Types = Types,
+        //        //AvailableAbilities = AvailableAbilities,
+        //        //AvailableHiddenAbility = AvailableHiddenAbility,
+        //        //PokedexEntry = PokedexEntry,
+        //        //Generation= Generation,
+        //        //LevelUpLearnset = LevelUpLearnset,
+
+        //        //IsAlive = IsAlive,
+        //        //IsDynamaxed = IsDynamaxed,
+        //        //IsMinimized = IsMinimized,
+        //        //IsUnderground = IsUnderground,
+        //        //IsUnderwater = IsUnderwater,
+
+        //        //DynamaxTurns = DynamaxTurns,
+
+        //        //CurrentHP = CurrentHP,
+        //        //Status = Status,
+        //        //StatusTurn = StatusTurn,
+        //        //SecondaryStatusList = SecondaryStatusList,
+        //        //Moves = Moves,
+        //        //Ability = Ability,
+        //        //Level = Level,
+        //        //Experience = Experience,
+        //        //IVs = IVs,
+        //        //EVs = EVs,
+        //        //Stats = Stats,
+        //        //StatStages = StatStages,
+        //        //HeldItem = HeldItem,
+        //        //Gender = Gender,
+        //        //Nature = Nature,
+
+        //        //BackSprite = BackSprite,
+        //        //FrontSprite = FrontSprite
+        //    };
+        //}
+        public override string ToString() => Name;
     }
 }

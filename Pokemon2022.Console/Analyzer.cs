@@ -43,6 +43,12 @@ namespace Pokemon2022.Console
                 System.Console.WriteLine($"And the winner is {state.Winner}");
             }
             */
+            attacker.Stats.HP = 10000;
+            attacker.CurrentHP = 10000;
+            defender.Stats.HP = 10000;
+            defender.CurrentHP = 10000;
+
+            List<Thread> Threads = new List<Thread>();
             Dictionary<int, List<BattleState>> fullData = new();
             fullData.Add(0, new());
             foreach (Move am in attacker.Moves)
@@ -54,14 +60,26 @@ namespace Pokemon2022.Console
             }
             for (int i = 1; i < depth; i++)
             {
-                System.Console.WriteLine($"Checking Turn {i+1}");
+                Thread t = new Thread(() => Ana(i));
+                t.Start();
+                Threads.Add(t);
+                while (t.ThreadState == ThreadState.Running)
+                {
+                    Thread.Sleep(100);
+                }
+            }
+            return fullData;
+
+            void Ana(int i)
+            {
+                System.Console.WriteLine($"[{DateTime.Now}] - Checking Turn {i}");
                 fullData.Add(i, new());
-                if (fullData[i - 1].Count == 0) return fullData;
-                foreach (BattleState state in fullData[i-1])
+                if (fullData[i - 1].Count == 0) return; // return fullData;
+                foreach (BattleState state in fullData[i - 1])
                 {
                     if (state.Winner != null)
                     {
-                        System.Console.WriteLine($"{state.Winner.Name} won Turn {i}");
+                        System.Console.WriteLine($"[{DateTime.Now}] - {state.Winner.Name} won Turn {i}");
                         continue;
                     }
                     foreach (Move am in state.Attacker.Moves)
@@ -73,7 +91,6 @@ namespace Pokemon2022.Console
                     }
                 }
             }
-            return fullData;
         }
     }
 }

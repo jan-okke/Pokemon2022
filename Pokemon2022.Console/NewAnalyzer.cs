@@ -29,13 +29,13 @@ namespace Pokemon2022.Console
             {
                 foreach (Move dm in defender.Moves)
                 {
-                    var _battle = battle.Clone();
+                    var _battle = battle.Copy();
                     fullData[0].Add(_battle.BattleTurn(am, dm).Last());
                 }
             }
             for (int i = 1; i < depth; i++)
             {
-                System.Console.WriteLine($"Checking Turn {i + 1}");
+                System.Console.WriteLine($"Checking Turn {i}");
                 fullData.Add(i, new());
                 if (fullData[i - 1].Count == 0) return fullData;
                 foreach (BattleState state in fullData[i - 1])
@@ -43,14 +43,14 @@ namespace Pokemon2022.Console
                     if (!state.Battle.IsBattleOngoing()) { System.Console.WriteLine("Battle over"); continue; }
                     if (state.Winner != null)
                     {
-                        System.Console.WriteLine($"{state.Winner.Name} won Turn {i}");
+                        System.Console.WriteLine($"{state.Winner.Name} won Turn {i + 1}");
                         continue;
                     }
                     foreach (Move am in state.Battle.PlayerCurrentPokemon.Moves)
                     {
                         foreach (Move dm in state.Battle.EnemyCurrentPokemon.Moves)
                         {
-                            var _battle = state.Battle.Clone();
+                            var _battle = state.Battle.Copy();
                             fullData[i].Add(_battle.BattleTurn(am, dm).Last());
                         }
                     }

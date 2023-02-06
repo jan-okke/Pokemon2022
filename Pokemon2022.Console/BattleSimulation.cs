@@ -23,7 +23,7 @@ namespace Pokemon2022.Console
             PlayerParty = playerParty;
             EnemyParty = enemyParty;
             Print("A battle has started!");
-            Battle = GameController.StartTrainerBattle(PlayerParty, EnemyParty);
+            //Battle = GameController.StartTrainerBattle(PlayerParty, EnemyParty);
             Start();
         }
         private static void Print(string text, bool newLine=true)
@@ -124,37 +124,37 @@ namespace Pokemon2022.Console
         }
         private void Start()
         {
-            while (PlayerParty.IsAlive() && EnemyParty.IsAlive()) 
-            {
-                string s = Input();
-                if (s == "show battle")
-                {
-                    Print(Battle);
-                }
-                if (s == "show moves")
-                {
-                    Print(Battle.PlayerParty.GetFirstAlivePokemon().Moves);
-                }
-                if (s.Contains("show pokemon "))
-                {
-                    Pokemon? temp = GetPokemonInParty(PlayerParty, s.Split(new[] { "show pokemon " }, StringSplitOptions.None)[1]);
-                    if (temp != null) Print(temp);
-                }
-                if (s.Contains("use move "))
-                {
-                    Move? temp = GetMoveFromPokemon(PlayerParty.GetFirstAlivePokemon(), s.Split(new[] { "use move " }, StringSplitOptions.None)[1]);
-                    if (temp != null)
-                    {
-                        List<BattleState> states = BattleLogic.BattleTurn(PlayerParty.GetFirstAlivePokemon(), EnemyParty.GetFirstAlivePokemon(), temp, GameController.RandomMove(EnemyParty.GetFirstAlivePokemon()), Battle);
-                        foreach (BattleState state in states)
-                        {
-                            foreach (string _s in state.DisplayText)
-                            System.Console.WriteLine(_s);
-                        }
-                    }
-                }
-            }
-            Print("Battle is over!");
+            //while (PlayerParty.IsAlive() && EnemyParty.IsAlive()) 
+            //{
+            //    string s = Input();
+            //    if (s == "show battle")
+            //    {
+            //        Print(Battle);
+            //    }
+            //    if (s == "show moves")
+            //    {
+            //        Print(Battle.PlayerParty.GetFirstAlivePokemon().Moves);
+            //    }
+            //    if (s.Contains("show pokemon "))
+            //    {
+            //        Pokemon? temp = GetPokemonInParty(PlayerParty, s.Split(new[] { "show pokemon " }, StringSplitOptions.None)[1]);
+            //        if (temp != null) Print(temp);
+            //    }
+            //    if (s.Contains("use move "))
+            //    {
+            //        Move? temp = GetMoveFromPokemon(PlayerParty.GetFirstAlivePokemon(), s.Split(new[] { "use move " }, StringSplitOptions.None)[1]);
+            //        if (temp != null)
+            //        {
+            //            List<BattleState> states = BattleLogic.BattleTurn(PlayerParty.GetFirstAlivePokemon(), EnemyParty.GetFirstAlivePokemon(), temp, GameController.RandomMove(EnemyParty.GetFirstAlivePokemon()), Battle);
+            //            foreach (BattleState state in states)
+            //            {
+            //                foreach (string _s in state.DisplayText)
+            //                System.Console.WriteLine(_s);
+            //            }
+            //        }
+            //    }
+            //}
+            //Print("Battle is over!");
         }
     }
 }

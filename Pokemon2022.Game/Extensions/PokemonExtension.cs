@@ -14,6 +14,15 @@ namespace Pokemon2022.Game.Extensions
 {
     public static class PokemonExtension
     {
+        public static void CalculateStats(this Pokemon pokemon)
+        {
+            pokemon.Stats.HP = Calculations.CalculateStat(pokemon, Stat.HP);
+            pokemon.Stats.Attack = Calculations.CalculateStat(pokemon, Stat.Attack);
+            pokemon.Stats.Defense = Calculations.CalculateStat(pokemon, Stat.Defense);
+            pokemon.Stats.SpecialAttack = Calculations.CalculateStat(pokemon, Stat.SpecialAttack);
+            pokemon.Stats.SpecialDefense = Calculations.CalculateStat(pokemon, Stat.SpecialDefense);
+            pokemon.Stats.Speed = Calculations.CalculateStat(pokemon, Stat.Speed);
+        }
         public static double GetHPPercentage(this Pokemon pokemon)
         {
             return pokemon.CurrentHP / pokemon.Stats.HP;

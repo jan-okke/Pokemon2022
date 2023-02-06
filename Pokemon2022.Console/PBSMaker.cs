@@ -21,12 +21,12 @@ namespace Pokemon2022.Console
         private static List<Pokemon>? GeneratePokemon(PokemonType t, int level, int generation, int minBST, int maxBST)
         {
             List<Pokemon> pokemons = new List<Pokemon>();
-            foreach (Pokemon p in PokemonFactory.Pokemons)
-            {
-                if (p.Types.Contains(t) && p.Generation == generation && p.GetBST() >= minBST && p.GetBST() <= maxBST) {
-                    pokemons.Add(GameController.NewPokemon(p.Name, level));
-                }
-            }
+            //foreach (Pokemon p in PokemonFactory.Pokemons)
+            //{
+            //    if (p.Types.Contains(t) && p.Generation == generation && p.GetBST() >= minBST && p.GetBST() <= maxBST) {
+            //        pokemons.Add(GameController.NewPokemon(p.Name, level));
+            //    }
+            //}
             if (pokemons.Count == 0) { return null; }
             return pokemons;
         }

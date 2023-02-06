@@ -54,8 +54,8 @@ namespace Pokemon2022.UI
                 PlayerPokemonBase.Source = BitmapLoader.GetBattleBGSprite("field_base0");
                 PlayerNameBlock.Text = PlayerPokemon.Name;
                 EnemyNameBlock.Text = OpponentPokemon.Name;
-                PlayerPokemonImage.Source = PlayerPokemon.BackSprite;
-                OpponentImage.Source = OpponentPokemon.FrontSprite; 
+                //PlayerPokemonImage.Source = PlayerPokemon.BackSprite;
+                //OpponentImage.Source = OpponentPokemon.FrontSprite; 
                 OutputTextBox.Text = $"A wild {OpponentPokemon.Name} appeared!\nGo, {PlayerPokemon.Name}!";
             }
             if (!modified)

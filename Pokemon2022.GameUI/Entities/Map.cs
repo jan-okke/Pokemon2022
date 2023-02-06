@@ -23,6 +23,19 @@ namespace Pokemon2022.GameUI.Entities
             
         }
 
+        public Map(int sizeX, int sizeY, Tileset tileset, Dictionary<int, List<int>> tilesetData) 
+        {
+            Size = new Point(sizeX, sizeY);
+            MapTileset = tileset;
+            TilesetData = tilesetData;
+        }
+        public Map(Point size, Tileset tileset, Dictionary<int, List<int>> tilesetData)
+        {
+            Size = size;
+            MapTileset = tileset;
+            TilesetData = tilesetData;
+        }
+
         private Point GetPointFromIndex(int index)
         {
             return new Point(index % Size.X, (int)(index / Size.X));
